@@ -1,4 +1,4 @@
-c Comments are ignored
+c file codifying a CNF in DIMACS CNF file format
 p cnf 3 5
 -1 2 0
 -1 3 0
