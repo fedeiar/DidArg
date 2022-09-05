@@ -6,6 +6,7 @@ public class FileManager {
     private final char EOF = '\u001a';
 
     private BufferedReader reader;
+    private String fileName;
     private boolean abierto;
 
     private String lineaActual;
@@ -16,13 +17,19 @@ public class FileManager {
     private boolean salteDeLinea;
 
     public FileManager(String file) throws FileNotFoundException, IOException{
+        fileName = file;
+        initializeReader();
+    }
+
+    private void initializeReader() throws FileNotFoundException, IOException{
         char_pos = 0;
         nroLineaActual = 1;
         salteDeLinea = false;
         
-        reader = new BufferedReader(new FileReader(file));
+        reader = new BufferedReader(new FileReader(fileName));
         abierto = true;
         lineaActual = reader.readLine();
+        lineaAnterior = null;
     }
 
     public int nroLinea(){
@@ -75,5 +82,9 @@ public class FileManager {
 
     public boolean esEOF(char c){
         return c == EOF;
+    }
+
+    public void restartFile() throws FileNotFoundException, IOException{
+        initializeReader();
     }
 }

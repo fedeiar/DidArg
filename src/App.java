@@ -1,6 +1,7 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collection;
 
 import org.sat4j.core.VecInt;
 import org.sat4j.minisat.SolverFactory;
@@ -10,39 +11,66 @@ import org.sat4j.reader.Reader;
 import org.sat4j.specs.ContradictionException;
 import org.sat4j.specs.IProblem;
 import org.sat4j.specs.ISolver;
+import org.sat4j.specs.IVec;
+import org.sat4j.specs.IVecInt;
 import org.sat4j.specs.TimeoutException;
+import org.sat4j.tools.ModelIterator;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        ISolver solver =  SolverFactory.newDefault();
-        solver.setTimeout(3600);
 
-        int amountOfVariables = 3;
-    
-        solver.newVar(amountOfVariables);
-        solver.setExpectedNumberOfClauses(100);
-        int[][] clauses = {{1,2}, {1, -2}, {-1, -2}};
-        
         try{
-            for(int[] clause : clauses){
-                solver.addClause(new VecInt(clause));
-            }
+            ConflictFreenes conflictFreenes = new ConflictFreenes(new FileManager("af_prueba.txt"));
+            IVec<IVecInt> clauses = conflictFreenes.calculateReduction();
+            Collection<Integer> arguments = conflictFreenes.arguments.values();
+
+            // PRINT ARGUMENTS
+            /* for(String argument : conflictFreenes.arguments.keySet()){
+                System.out.println(argument +" - "+ conflictFreenes.arguments.get(argument));
+            } */
+
+            // PRINT CLAUSES
+           /*  System.out.println("CLAUSES:"); 
+            for(int i = 0 ; i < clauses.size() ; i++){
+                IVecInt clause = clauses.get(i);
+                for(int j = 0 ; j < clause.size() ; j++){
+                    System.out.print(clause.get(j)+" ");
+                }
+                System.out.println();
+            } */
+            
+            
+            ISolver solver =  new ModelIterator(SolverFactory.newDefault());
+            solver.setTimeout(3600);
+        
+            solver.newVar(arguments.size());
+            solver.setExpectedNumberOfClauses(clauses.size());
+
+            solver.addAllClauses(clauses);
             
             IProblem problem = solver;
-            if(problem.isSatisfiable()){
-                
-                System.out.println("satisfiable!");
+            boolean unsat = true;
+            while(solver.isSatisfiable()){
+                unsat = false;
                 int[] model = problem.model();
                 for(int i = 1; i < model.length + 1; i++){
-                    System.out.println("var "+i+" = "+problem.model(i));
+                    System.out.print("var "+i+" = "+problem.model(i)+" - ");
                 }
+                System.out.println("");
+            }
                 
-            } else{
+            if(unsat){
                 System.out.println("unsatisfiable!");
             }
+
+            
         } catch (ContradictionException e) {
             System.out.println("Unsatisfiable (trivial)!");
+        } catch(Exception e){
+            System.out.println(e.getMessage());
         }
+
+        
     }
 }
 
