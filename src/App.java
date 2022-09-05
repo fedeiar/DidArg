@@ -1,19 +1,12 @@
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Collection;
 
-import org.sat4j.core.VecInt;
 import org.sat4j.minisat.SolverFactory;
-import org.sat4j.reader.DimacsReader;
-import org.sat4j.reader.ParseFormatException;
-import org.sat4j.reader.Reader;
+
 import org.sat4j.specs.ContradictionException;
 import org.sat4j.specs.IProblem;
 import org.sat4j.specs.ISolver;
 import org.sat4j.specs.IVec;
 import org.sat4j.specs.IVecInt;
-import org.sat4j.specs.TimeoutException;
 import org.sat4j.tools.ModelIterator;
 
 public class App {
