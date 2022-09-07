@@ -138,7 +138,9 @@ public class ConflictFreenes {
 
     private void argument_name_dot() throws IOException, ParserException{
         if(parse_argument){
-            arguments.put(currentArgumentName, arguments.size() + 1);
+            if(arguments.get(currentArgumentName) == null){
+                arguments.put(currentArgumentName, arguments.size() + 1);
+            }
         }
         currentArgumentName = "";
         initial_state();
@@ -239,6 +241,7 @@ public class ConflictFreenes {
         }
     }
 
+    // TODO: que no haya 2 ataques iguales.
     private void attack_relation_dot() throws IOException, ParserException{
         if(parse_attack){
             int[] array = {arguments.get(firstArgument) * -1, arguments.get(secondArgument) * -1}; // esto representa conflict-freenes.
