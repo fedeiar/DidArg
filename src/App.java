@@ -13,9 +13,11 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         try{
-            ConflictFreenes conflictFreenes = new ConflictFreenes(new FileManager("af_prueba.txt"));
+            Parser parser = new Parser(new FileManager("af_prueba.txt"));
+            ConflictFreenes conflictFreenes = new ConflictFreenes(parser); 
             IVec<IVecInt> clauses = conflictFreenes.calculateReduction();
-            Collection<Integer> arguments = conflictFreenes.arguments.values();
+
+            Collection<Integer> arguments = conflictFreenes.getArguments();
 
             // PRINT ARGUMENTS
             /* for(String argument : conflictFreenes.arguments.keySet()){
