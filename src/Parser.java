@@ -30,8 +30,8 @@ public class Parser {
         attack_relations = new Vec<IVecInt>();
     }
 
-    public Collection<Integer> getArguments(){
-        return arguments.values();
+    public Map<String, Integer> getArguments(){
+        return arguments;
     }
 
     private void updateCharacter() throws IOException{

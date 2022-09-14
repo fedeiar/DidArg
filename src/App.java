@@ -1,4 +1,7 @@
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import org.sat4j.minisat.SolverFactory;
 
@@ -17,9 +20,23 @@ public class App {
             ConflictFreenes conflictFreenes = new ConflictFreenes(parser); 
             IVec<IVecInt> clauses = conflictFreenes.calculateReduction();
 
-            Collection<Integer> arguments = conflictFreenes.getArguments();
+            Map<String, Integer> arguments = conflictFreenes.getArguments();
 
-            // PRINT ARGUMENTS
+            
+            
+            ExtensionEnumerator extensionEnumerator = new ExtensionEnumerator(arguments, clauses);
+            Set<Set<String>> extensions = extensionEnumerator.getExtensions();
+
+            System.out.println(extensions);
+
+        } catch (ContradictionException e) {
+            System.out.println("Unsatisfiable (trivial)!");
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+
+
+        // PRINT ARGUMENTS
             /* for(String argument : conflictFreenes.arguments.keySet()){
                 System.out.println(argument +" - "+ conflictFreenes.arguments.get(argument));
             } */
@@ -33,69 +50,6 @@ public class App {
                 }
                 System.out.println();
             } */
-            
-            
-            ISolver solver =  new ModelIterator(SolverFactory.newDefault());
-            solver.setTimeout(3600);
-        
-            solver.newVar(arguments.size());
-            solver.setExpectedNumberOfClauses(clauses.size());
-
-            solver.addAllClauses(clauses);
-            
-            IProblem problem = solver;
-            boolean unsat = true;
-            while(solver.isSatisfiable()){
-                unsat = false;
-                int[] model = problem.model();
-                for(int i = 1; i < model.length + 1; i++){
-                    System.out.print("var "+i+" = "+problem.model(i)+" - ");
-                }
-                System.out.println("");
-            }
-                
-            if(unsat){
-                System.out.println("unsatisfiable!");
-            }
-
-            
-        } catch (ContradictionException e) {
-            System.out.println("Unsatisfiable (trivial)!");
-        } catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-
         
     }
 }
-
-
-
-// USA UN ARCHIVO DE TEXTO EN FORMATO DIMACS
-/*
-
-ISolver solver =  SolverFactory.newDefault();
-        solver.setTimeout(3600);
-        Reader reader = new DimacsReader(solver);
-        PrintWriter out = new PrintWriter(System.out, true);
-        try{
-            IProblem problem = reader.parseInstance("cnf.txt");
-            if(problem.isSatisfiable()){
-                System.out.println("Satisfiable!");
-                reader.decode(problem.model(), out);
-            } else{
-                System.out.println("Unsatisfiable!");
-            }
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-        } catch (ParseFormatException e) {
-            // TODO Auto-generated catch block
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-        } catch (ContradictionException e) {
-            System.out.println("Unsatisfiable (trivial)!");
-        } catch (TimeoutException e) {
-            System.out.println("Timeout, sorry!");      
-        } 
-        
-*/

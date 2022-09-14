@@ -1,5 +1,8 @@
 import java.io.IOException;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import org.sat4j.core.Vec;
 import org.sat4j.core.VecInt;
@@ -18,9 +21,10 @@ public class ConflictFreenes {
         clauses = new Vec<IVecInt>();
     }
 
-    public Collection<Integer> getArguments(){
+    public Map<String, Integer> getArguments(){
         return parser.getArguments();
     }
+    
 
     public IVec<IVecInt> calculateReduction() throws IOException, ParserException{
         
@@ -29,7 +33,7 @@ public class ConflictFreenes {
             int[] array = {attack.get(0) * -1, attack.get(1) * -1};
             clauses.push(new VecInt(array));
         }
-        return attacks;
+        return clauses;
     }
 
 }
