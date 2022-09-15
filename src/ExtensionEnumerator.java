@@ -29,7 +29,6 @@ public class ExtensionEnumerator {
     
 
     public Set<Set<String>> getExtensions() throws TimeoutException, ContradictionException{
-
         ISolver solver = new ModelIterator(SolverFactory.newDefault());
         solver.setTimeout(3600);
         solver.newVar(arguments.size());
@@ -49,7 +48,6 @@ public class ExtensionEnumerator {
                 }
             }
             setsOfExtensions.add(extension);
-            
         }
         
         return setsOfExtensions;
