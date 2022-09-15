@@ -1,16 +1,11 @@
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
-import org.sat4j.minisat.SolverFactory;
-
 import org.sat4j.specs.ContradictionException;
-import org.sat4j.specs.IProblem;
-import org.sat4j.specs.ISolver;
 import org.sat4j.specs.IVec;
 import org.sat4j.specs.IVecInt;
-import org.sat4j.tools.ModelIterator;
+
+import View.MainWindow;
+
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -35,6 +30,10 @@ public class App {
             System.out.println(e.getMessage());
         }
 
+        
+        MainWindow view = new MainWindow();
+        view.setVisible(true);
+        view.setLatexLabel("(a \\lor b) \\rightarrow c");
 
         // PRINT ARGUMENTS
             /* for(String argument : conflictFreenes.arguments.keySet()){
@@ -52,4 +51,7 @@ public class App {
             } */
         
     }
+
+
+   
 }
