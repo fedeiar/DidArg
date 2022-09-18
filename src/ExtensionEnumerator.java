@@ -15,15 +15,11 @@ import org.sat4j.specs.IVecInt;
 
 public class ExtensionEnumerator {
 
-    public Map<Integer, String> arguments;
-    IVec<IVecInt> clauses;
+    private Map<Integer, String> arguments;
+    private IVec<IVecInt> clauses;
 
     public ExtensionEnumerator(Map<String, Integer> argumentsByString, IVec<IVecInt> clauses){
-        arguments = new HashMap<Integer, String>();
-        for(Entry<String,Integer> argument : argumentsByString.entrySet()){
-            arguments.put(argument.getValue(), argument.getKey());
-        }
-        
+        arguments = Utilities.exchangeKeyValue(argumentsByString);
         this.clauses = clauses;
     }
     

@@ -16,13 +16,19 @@ public class App {
             IVec<IVecInt> clauses = conflictFreenes.calculateReduction();
 
             Map<String, Integer> arguments = conflictFreenes.getArguments();
-
+            String latexFormula = conflictFreenes.getLatexFormula();
             
             
             ExtensionEnumerator extensionEnumerator = new ExtensionEnumerator(arguments, clauses);
             Set<Set<String>> extensions = extensionEnumerator.getExtensions();
 
             System.out.println(extensions);
+            System.out.println(latexFormula);
+
+
+            MainWindow view = new MainWindow();
+            view.setVisible(true);
+            view.setLatexLabel(latexFormula);
 
         } catch (ContradictionException e) {
             System.out.println("Unsatisfiable (trivial)!");
@@ -31,9 +37,7 @@ public class App {
         }
 
         
-        MainWindow view = new MainWindow();
-        view.setVisible(true);
-        view.setLatexLabel("(a \\lor b) \\rightarrow c");
+        
 
         // PRINT ARGUMENTS
             /* for(String argument : conflictFreenes.arguments.keySet()){

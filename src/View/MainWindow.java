@@ -44,7 +44,7 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(98, 98, 98)
-                        .addComponent(lblLatexFormula, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblLatexFormula, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(97, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -72,6 +72,6 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     public void setLatexLabel(String latexString){
-        lblLatexFormula.setIcon(latex.actualizarIconLaTex(latexString, 40));
+        lblLatexFormula.setIcon(latex.actualizarIconLaTex(latexString, 20));
     }
 }

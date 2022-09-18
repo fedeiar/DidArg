@@ -16,7 +16,7 @@ public class Parser {
     private char currentCharacter;
 
     private IVec<IVecInt> attack_relations;
-    public Map<String, Integer> arguments;
+    private Map<String, Integer> arguments;
     private String currentArgumentName;
     private String firstArgument;
     private String secondArgument;

@@ -8,28 +8,37 @@ import org.sat4j.specs.IVecInt;
 public class ConflictFreenes {
     
     private Parser parser;
-    IVec<IVecInt> attacks;
+    private IVec<IVecInt> attacks;
+    private Map<Integer, String> arguments; 
     private IVec<IVecInt> clauses;
+    private String latexFormula;
 
     public ConflictFreenes(Parser parser) throws IOException, ParserException{
         this.parser = parser;
         attacks = parser.ParseArgumentationFramework();
+        arguments = Utilities.exchangeKeyValue(parser.getArguments());
         clauses = new Vec<IVecInt>();
+        latexFormula = "";
     }
 
     public Map<String, Integer> getArguments(){
         return parser.getArguments();
     }
     
-
     public IVec<IVecInt> calculateReduction() throws IOException, ParserException{
         
         for(int i = 0; i < attacks.size(); i++){
             IVecInt attack = attacks.get(i);
             int[] array = {attack.get(0) * -1, attack.get(1) * -1};
             clauses.push(new VecInt(array));
+
+            latexFormula += "(V_"+arguments.get(attack.get(0))+" \\rightarrow \\neg V_"+arguments.get(attack.get(1))+") \\land ";
         }
         return clauses;
+    }
+
+    public String getLatexFormula(){
+        return latexFormula;
     }
 
 }
