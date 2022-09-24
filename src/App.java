@@ -11,7 +11,7 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         try{
-            Parser parser = new Parser(new FileManager("af_prueba.txt"));
+            Parser parser = new Parser(new FileManager("af_examples/af_1.txt"));
             ConflictFreenes conflictFreenes = new ConflictFreenes(parser); 
             IVec<IVecInt> clauses = conflictFreenes.calculateReduction();
 

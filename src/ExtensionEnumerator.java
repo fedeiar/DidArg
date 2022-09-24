@@ -22,7 +22,6 @@ public class ExtensionEnumerator {
         arguments = Utilities.exchangeKeyValue(argumentsByString);
         this.clauses = clauses;
     }
-    
 
     public Set<Set<String>> getExtensions() throws TimeoutException, ContradictionException{
         ISolver solver = new ModelIterator(SolverFactory.newDefault());

@@ -13,6 +13,7 @@ public class ConflictFreenes {
     private IVec<IVecInt> clauses;
     private String latexFormula;
 
+    //TODO: sacar una clase abstracta "Semantics" que tenga este constructor ya que será igual para cada una de las semanticas. Luego cada semantica hereda de Semantics.
     public ConflictFreenes(Parser parser) throws IOException, ParserException{
         this.parser = parser;
         attacks = parser.ParseArgumentationFramework();
@@ -32,7 +33,8 @@ public class ConflictFreenes {
             int[] array = {attack.get(0) * -1, attack.get(1) * -1};
             clauses.push(new VecInt(array));
 
-            latexFormula += "(V_"+arguments.get(attack.get(0))+" \\rightarrow \\neg V_"+arguments.get(attack.get(1))+") \\land ";
+            //TODO: acomodar el último and.
+            latexFormula += "(V_"+arguments.get(attack.get(0))+" \\rightarrow \\neg V_"+arguments.get(attack.get(1))+") \\land \\\\";
         }
         return clauses;
     }

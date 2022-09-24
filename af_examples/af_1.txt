@@ -6,3 +6,8 @@ att(a,b).
 att(b,c).
 att(c,d).
 att(d,c).
+
+
+
+att(d,c).
+att(a,b).

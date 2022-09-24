@@ -69,7 +69,7 @@ public class Parser {
         } else if(fileManager.esEOF(currentCharacter)){
             return;
         } else{
-            throw new ParserException("ninvalid argument definition", fileManager.nroLinea());
+            throw new ParserException("invalid argument definition", fileManager.nroLinea());
         }
     }
 
@@ -246,15 +246,30 @@ public class Parser {
         }
     }
 
-    // TODO: que no haya 2 ataques iguales.
     private void attack_relation_dot() throws IOException, ParserException{
         if(parse_attack){
-            int[] array = {arguments.get(firstArgument), arguments.get(secondArgument)};
-            attack_relations.push(new VecInt(array));
+            int[] newAttack = {arguments.get(firstArgument), arguments.get(secondArgument)};
+            boolean duplicate = checkForDuplicates(newAttack);
+            if(!duplicate){
+                attack_relations.push(new VecInt(newAttack));
+            }
         } 
         firstArgument = "";
         secondArgument = "";
         initial_state();
+    }
+    
+
+    private boolean checkForDuplicates(int[] newAttack){
+        boolean duplicate = false;
+        for(int i = 0; i < attack_relations.size(); i++){
+            IVecInt attack = attack_relations.get(i);
+            if(newAttack[0] == attack.get(0) && newAttack[1] == attack.get(1)){
+                duplicate = true;
+                break;
+            }
+        }
+        return duplicate;
     }
 
 }
