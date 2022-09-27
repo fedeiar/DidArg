@@ -1,8 +1,7 @@
-import java.util.HashMap;
+package extensions;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.Map.Entry;
 
 import org.sat4j.specs.TimeoutException;
 import org.sat4j.tools.ModelIterator;
@@ -18,8 +17,8 @@ public class ExtensionEnumerator {
     private Map<Integer, String> arguments;
     private IVec<IVecInt> clauses;
 
-    public ExtensionEnumerator(Map<String, Integer> argumentsByString, IVec<IVecInt> clauses){
-        arguments = Utilities.exchangeKeyValue(argumentsByString);
+    public ExtensionEnumerator(Map<Integer, String> argumentsByInteger, IVec<IVecInt> clauses){
+        arguments = argumentsByInteger;
         this.clauses = clauses;
     }
 

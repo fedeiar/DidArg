@@ -1,4 +1,4 @@
-package View;
+package view;
 
 import org.scilab.forge.jlatexmath.ParseException;
 import org.scilab.forge.jlatexmath.TeXConstants;

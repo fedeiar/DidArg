@@ -1,3 +1,4 @@
+package parser;
 import java.io.IOException;
 
 import java.util.HashMap;
@@ -258,7 +259,7 @@ public class Parser {
         secondArgument = "";
         initial_state();
     }
-    
+
 
     private boolean checkForDuplicates(int[] newAttack){
         boolean duplicate = false;

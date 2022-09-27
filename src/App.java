@@ -1,30 +1,33 @@
-import java.util.Map;
 import java.util.Set;
 import org.sat4j.specs.ContradictionException;
 import org.sat4j.specs.IVec;
 import org.sat4j.specs.IVecInt;
 
-import View.MainWindow;
+import extensions.ExtensionEnumerator;
+import parser.AFDataStructures;
+import parser.FileManager;
+import parser.Parser;
+import semantics.ConflictFreenes;
+import semantics.Semantic;
+import view.MainWindow;
 
 
 public class App {
     public static void main(String[] args) throws Exception {
 
         try{
-            Parser parser = new Parser(new FileManager("af_examples/af_1.txt"));
-            ConflictFreenes conflictFreenes = new ConflictFreenes(parser); 
+            Parser parser = new Parser(new FileManager("af_examples/af_3.txt"));
+            AFDataStructures structures = new AFDataStructures(parser);
+            
+            Semantic conflictFreenes = new ConflictFreenes(structures); 
             IVec<IVecInt> clauses = conflictFreenes.calculateReduction();
-
-            Map<String, Integer> arguments = conflictFreenes.getArguments();
             String latexFormula = conflictFreenes.getLatexFormula();
             
-            
-            ExtensionEnumerator extensionEnumerator = new ExtensionEnumerator(arguments, clauses);
+            ExtensionEnumerator extensionEnumerator = new ExtensionEnumerator(structures.argumentsByInteger, clauses);
             Set<Set<String>> extensions = extensionEnumerator.getExtensions();
 
             System.out.println(extensions);
             System.out.println(latexFormula);
-
 
             MainWindow view = new MainWindow();
             view.setVisible(true);
@@ -36,7 +39,6 @@ public class App {
             System.out.println(e.getMessage());
         }
 
-        
         
 
         // PRINT ARGUMENTS
