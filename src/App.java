@@ -7,6 +7,7 @@ import extensions.ExtensionEnumerator;
 import parser.AFDataStructures;
 import parser.FileManager;
 import parser.Parser;
+import semantics.Admisibility;
 import semantics.ConflictFreenes;
 import semantics.Semantic;
 import view.MainWindow;
@@ -16,12 +17,12 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         try{
-            Parser parser = new Parser(new FileManager("af_examples/af_3.txt"));
+            Parser parser = new Parser(new FileManager("af_examples/af_1.txt"));
             AFDataStructures structures = new AFDataStructures(parser);
             
-            Semantic conflictFreenes = new ConflictFreenes(structures); 
-            IVec<IVecInt> clauses = conflictFreenes.calculateReduction();
-            String latexFormula = conflictFreenes.getLatexFormula();
+            Semantic semantic = new Admisibility(structures); 
+            IVec<IVecInt> clauses = semantic.calculateReduction();
+            String latexFormula = semantic.getLatexFormula();
             
             ExtensionEnumerator extensionEnumerator = new ExtensionEnumerator(structures.argumentsByInteger, clauses);
             Set<Set<String>> extensions = extensionEnumerator.getExtensions();

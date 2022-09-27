@@ -18,8 +18,10 @@ public class ConflictFreenes extends Semantic{
         
         for(int i = 0; i < attacks.size(); i++){
             IVecInt attack = attacks.get(i);
-            int[] array = {attack.get(0) * -1, attack.get(1) * -1};
-            clauses.push(new VecInt(array));
+            VecInt clause = new VecInt();
+            clause.push(attack.get(0) * -1);
+            clause.push(attack.get(1) * -1);
+            clauses.push(clause);
 
             if(i < attacks.size() - 1){
                 latexFormula += "(V_"+arguments.get(attack.get(0))+" \\rightarrow \\neg V_"+arguments.get(attack.get(1))+") \\land \\\\";
