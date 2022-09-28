@@ -20,7 +20,7 @@ public class App {
             Parser parser = new Parser(new FileManager("af_examples/af_7.txt"));
             AFDataStructures structures = new AFDataStructures(parser);
             
-            Semantic semantic = new ConflictFreenes(structures); 
+            Semantic semantic = new Admisibility(structures); 
             IVec<IVecInt> clauses = semantic.calculateReduction();
             String latexFormula = semantic.getLatexFormula();
             
