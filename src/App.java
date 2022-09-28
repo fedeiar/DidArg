@@ -17,7 +17,7 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         try{
-            Parser parser = new Parser(new FileManager("af_examples/af_1.txt"));
+            Parser parser = new Parser(new FileManager("af_examples/af_7.txt"));
             AFDataStructures structures = new AFDataStructures(parser);
             
             Semantic semantic = new ConflictFreenes(structures); 

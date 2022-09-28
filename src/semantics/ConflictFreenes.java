@@ -1,5 +1,7 @@
 package semantics;
 import java.io.IOException;
+import java.util.Map.Entry;
+
 import org.sat4j.core.VecInt;
 import org.sat4j.specs.IVec;
 import org.sat4j.specs.IVecInt;
@@ -17,6 +19,12 @@ public class ConflictFreenes extends Semantic{
     public IVec<IVecInt> calculateReduction() throws IOException, ParserException{
         
         for(int i = 0; i < attacks.size(); i++){
+
+            /* for(Entry<Integer, String> argument : arguments.entrySet()){
+
+            } */
+
+
             IVecInt attack = attacks.get(i);
             VecInt clause = new VecInt();
             clause.push(attack.get(0) * -1);

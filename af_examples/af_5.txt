@@ -1,0 +1,11 @@
+arg(a).
+arg(b).
+arg(c).
+arg(d).
+att(a,b).
+att(b,c).
+att(c,d).
+att(d,a).
+
+# Conflict free sets: [[], [a], [b], [c], [d], [a, c], [b, d]]
+# Admisible sets: [[], [a, c], [b, d]]

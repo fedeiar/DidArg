@@ -7,9 +7,8 @@ att(b,c).
 att(c,d).
 att(d,c).
 
+att(d,c). # repeated attack (must be ignored).
+att(a,b). # repeated attack (must be ignored).
 
-
-att(d,c).
-att(a,b).
-
-# 
+# Conflict free sets: [[], [a], [b], [c], [d], [a, c], [a, d], [b, d]]
+# Admisible sets: [[], [a], [d], [a, c], [a, d]]

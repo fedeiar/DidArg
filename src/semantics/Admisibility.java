@@ -37,7 +37,7 @@ public class Admisibility extends Semantic{
                     clause.push(argument.getKey() * -1);
                     argumentIsAttacked = true;
                     int attackerOfArgument = attack1.get(0);
-                    for(int j = 0; i < attacks.size(); i++){
+                    for(int j = 0; j < attacks.size(); j++){
                         IVecInt attack2 = attacks.get(j);
                         if(attack2.get(1) == attackerOfArgument){ // significa que el argumento es defendido por attack2.get(0)
                             clause.push(attack2.get(0)); // agregamos al defensor del argumento

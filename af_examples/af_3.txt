@@ -1,2 +1,5 @@
 arg(a).
 arg(b).
+
+# Conflict free sets: [[], [a], [b], [a, b]]
+# Admisible sets: [[], [a], [b], [a, b]]
