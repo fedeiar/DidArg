@@ -67,6 +67,8 @@ public class Parser {
             initial_state();
         } else if (currentCharacter == 'a'){
             argument_name_a();
+        } else if (currentCharacter == '#'){
+            single_line_comment();
         } else if(fileManager.esEOF(currentCharacter)){
             return;
         } else{
@@ -259,8 +261,6 @@ public class Parser {
         secondArgument = "";
         initial_state();
     }
-
-
     private boolean checkForDuplicates(int[] newAttack){
         boolean duplicate = false;
         for(int i = 0; i < attack_relations.size(); i++){
@@ -271,6 +271,18 @@ public class Parser {
             }
         }
         return duplicate;
+    }
+
+    private void single_line_comment() throws IOException, ParserException{
+        updateCharacter();
+
+        if(currentCharacter == '\n'){
+            initial_state();
+        } else if (fileManager.esEOF(currentCharacter)){
+            return;
+        } else{
+            single_line_comment();
+        }
     }
 
 }
