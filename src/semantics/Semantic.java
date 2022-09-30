@@ -27,10 +27,10 @@ public abstract class Semantic{
         latexFormula = "";
 
         //TODO: esta bien esto? ya que es la unica forma de que se tenga en cuenta cada variable por su cuenta sin pertenecer a una clausula.
-        for(Entry<Integer, String> argument : arguments.entrySet()){
+        /* for(Entry<Integer, String> argument : arguments.entrySet()){
             int[] array = {argument.getKey(), argument.getKey() * -1};
             clauses.push(new VecInt(array));
-        }
+        } */
     }
 
     public abstract IVec<IVecInt> calculateReduction() throws IOException, ParserException;
