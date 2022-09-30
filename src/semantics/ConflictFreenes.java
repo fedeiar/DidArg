@@ -2,12 +2,15 @@ package semantics;
 import java.io.IOException;
 import java.util.Map.Entry;
 
+import javax.swing.text.Utilities;
+
 import org.sat4j.core.VecInt;
 import org.sat4j.specs.IVec;
 import org.sat4j.specs.IVecInt;
 
 import parser.AFDataStructures;
 import parser.ParserException;
+import util.Utils;
 
 public class ConflictFreenes extends Semantic{
 
@@ -19,9 +22,10 @@ public class ConflictFreenes extends Semantic{
     public IVec<IVecInt> calculateReduction() throws IOException, ParserException{
         VecInt clause;
         boolean argumentIsAttacked;
+        
         for(Entry<Integer, String> argument : arguments.entrySet()){
             argumentIsAttacked = false;
-            
+            latexFormula += "(V_"+arguments.get(argument.getKey())+" \\rightarrow (";
             for(int i = 0; i < attacks.size(); i++){
                 IVecInt attack = attacks.get(i);
                 if(attack.get(1) == argument.getKey()){ // El argumento es atacado
@@ -31,7 +35,7 @@ public class ConflictFreenes extends Semantic{
                     clause.push(attack.get(0) * -1);
                     clauses.push(clause);
 
-                    latexFormula += "(V_"+arguments.get(attack.get(1))+" \\rightarrow \\neg V_"+arguments.get(attack.get(0))+") \\land \\\\";
+                    latexFormula += "\\neg V_"+arguments.get(attack.get(0))+" \\land ";
                 }
             }
 
@@ -40,12 +44,15 @@ public class ConflictFreenes extends Semantic{
                 clause.push(argument.getKey());
                 clause.push(argument.getKey() * -1);
                 clauses.push(clause);
-                latexFormula += "(V_"+argument.getValue()+" \\rightarrow \\top) \\land \\\\";
+                latexFormula += "\\top ";
+            } else{
+                latexFormula = Utils.removeLastOperatorFromLatexFormula(latexFormula, 6); // Eliminamos el ultimo and agregado cuando reconociamos ataques.
             }
+
+            latexFormula += ") ) \\land \\\\ ";
         }
 
-        final int LAST_AND_LONGITUDE = 8;
-        latexFormula = latexFormula.substring(0, latexFormula.length() - LAST_AND_LONGITUDE);
+        latexFormula = Utils.removeLastOperatorFromLatexFormula(latexFormula, 9);
         
         return clauses;
     }

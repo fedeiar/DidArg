@@ -9,6 +9,7 @@ import org.sat4j.specs.IVecInt;
 
 import parser.AFDataStructures;
 import parser.ParserException;
+import util.Utils;
 
 public class Admisibility extends Semantic{
     
@@ -51,6 +52,8 @@ public class Admisibility extends Semantic{
                     }
                     if(!argumentIsDefendedFromAttack){
                         latexFormula += "\\bot ";
+                    } else{
+                        latexFormula = Utils.removeLastOperatorFromLatexFormula(latexFormula, 5); // Eliminamos el ultimo or agregado cuando reconociamos defensores.
                     }
                     latexFormula += ") \\land ";
                     clauses.push(clause); // tenemos una clausula para un atacante.
@@ -62,9 +65,13 @@ public class Admisibility extends Semantic{
                 clause.push(argument.getKey());
                 clauses.push(clause);
                 latexFormula += "\\top ";
+            } else{
+                latexFormula = Utils.removeLastOperatorFromLatexFormula(latexFormula, 6); // Eliminamos el ultimo and agregado cuando reconociamos ataques.
             }
             latexFormula += ") ) \\land \\\\ ";
         }
+
+        latexFormula = Utils.removeLastOperatorFromLatexFormula(latexFormula, 9);
 
         return clauses;
     }

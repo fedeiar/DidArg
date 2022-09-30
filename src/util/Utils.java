@@ -1,10 +1,10 @@
-package utils;
+package util;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class Utilities {
+public class Utils {
     
 
     public static Map<Integer, String> exchangeKeyValue(Map<String, Integer> argumentsByString){
@@ -14,5 +14,9 @@ public class Utilities {
         }
 
         return arguments;
+    }
+
+    public static String removeLastOperatorFromLatexFormula(String latexFormula, int longitudeToRemove){
+        return latexFormula.substring(0, latexFormula.length() - longitudeToRemove);
     }
 }

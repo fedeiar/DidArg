@@ -5,7 +5,7 @@ import java.util.Map;
 import org.sat4j.specs.IVec;
 import org.sat4j.specs.IVecInt;
 
-import utils.Utilities;
+import util.Utils;
 
 public class AFDataStructures{
 
@@ -16,6 +16,6 @@ public class AFDataStructures{
     public AFDataStructures(Parser parser) throws IOException, ParserException{
         attacks = parser.ParseArgumentationFramework();
         argumentsByString = parser.getArguments();
-        argumentsByInteger = Utilities.exchangeKeyValue(argumentsByString);
+        argumentsByInteger = Utils.exchangeKeyValue(argumentsByString);
     }
 }
