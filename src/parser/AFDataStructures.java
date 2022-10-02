@@ -9,13 +9,21 @@ import util.Utils;
 
 public class AFDataStructures{
 
+    private Parser parser;
+
     public IVec<IVecInt> attacks;
     public Map<String, Integer> argumentsByString; 
     public Map<Integer, String> argumentsByInteger;
+    public String contentOfFile;
 
-    public AFDataStructures(Parser parser) throws IOException, ParserException{
-        attacks = parser.ParseArgumentationFramework();
+    public AFDataStructures(){
+        this.parser = new Parser();
+    }
+
+    public void calculateAFDataStructures(String fileName) throws IOException, ParserException{
+        attacks = parser.ParseArgumentationFramework(fileName);
         argumentsByString = parser.getArguments();
         argumentsByInteger = Utils.exchangeKeyValue(argumentsByString);
+        contentOfFile = parser.getContentOfFile();
     }
 }

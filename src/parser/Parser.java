@@ -14,6 +14,8 @@ public class Parser {
 
     
     private FileManager fileManager;
+    private String contentOfFile;
+    private boolean writeContentOfFile;
     private char currentCharacter;
 
     private IVec<IVecInt> attack_relations;
@@ -24,35 +26,51 @@ public class Parser {
     private boolean parse_argument;
     private boolean parse_attack;
 
-    public Parser(FileManager fileManager){
-        this.fileManager = fileManager;
-        currentArgumentName = "";
+    public Parser(){
+
+    }
+
+    private void initializeParser(String fileName) throws IOException, ParserException{
+        this.fileManager = new FileManager(fileName);
+        currentArgumentName = ""; firstArgument = ""; secondArgument = ""; contentOfFile = "";
         arguments = new HashMap<String, Integer>();
         attack_relations = new Vec<IVecInt>();
     }
 
-    public Map<String, Integer> getArguments(){
-        return arguments;
-    }
-
+    //TODO: esta bien obtener el contenido del archivo de texto mientras parseamos?
     private void updateCharacter() throws IOException{
         currentCharacter = fileManager.proximoCaracter();
+        if(writeContentOfFile && !fileManager.esEOF(currentCharacter)){
+            contentOfFile += currentCharacter;
+        }
     }
 
     private void updateArgumentName() throws IOException{
         currentArgumentName = currentArgumentName + currentCharacter;
     }
 
-    public IVec<IVecInt> ParseArgumentationFramework() throws IOException, ParserException{
+    public Map<String, Integer> getArguments(){
+        return arguments;
+    }
+
+    public String getContentOfFile(){
+        return contentOfFile;
+    }
+
+    public IVec<IVecInt> ParseArgumentationFramework(String fileName) throws IOException, ParserException{
+        initializeParser(fileName);
+
         parse_argument = true;
         parse_attack = false;
+        writeContentOfFile = true;
 
         initial_state();
 
         parse_argument = false;
         parse_attack = true;
-
+        writeContentOfFile = false;
         fileManager.restartFile();
+
         initial_state(); 
 
         return attack_relations;   
