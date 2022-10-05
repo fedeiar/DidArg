@@ -10,7 +10,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private MainWindowController mainWindowController;
 
-    private JLabel lblLatexFormula, lblTitleFormula, lblTitleFile, lblTitleSemantic, lblTitleExtensions;
+    private JLabel lblLatexFormula, lblTitleFormula, lblTitleFile, lblTitleSemantics, lblTitleExtensions;
     private JPanel mainPanel;
     private JScrollPane SPFormula, SPFile, SPExtensions;
     private JTextArea TAFile, TAExtensions;
@@ -65,11 +65,11 @@ public class MainWindow extends javax.swing.JFrame {
 		btnFile.setBounds(24, 76, 100, 23);
 		mainPanel.add(btnFile);
 
-        lblTitleSemantic = new JLabel("Select Semantic");
-		lblTitleSemantic.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTitleSemantic.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblTitleSemantic.setBounds(38, 448, 219, 35);
-		mainPanel.add(lblTitleSemantic);
+        lblTitleSemantics = new JLabel("Select Semantics");
+		lblTitleSemantics.setHorizontalAlignment(SwingConstants.LEFT);
+		lblTitleSemantics.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblTitleSemantics.setBounds(38, 448, 219, 35);
+		mainPanel.add(lblTitleSemantics);
 
         btnConflictFreenes = new JButton("Conflict Freenes");
 		btnConflictFreenes.setBounds(38, 505, 129, 23);

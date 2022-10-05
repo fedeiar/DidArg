@@ -19,7 +19,7 @@ public class App {
 
         try{
             AFDataStructures structures = new AFDataStructures();
-            structures.calculateAFDataStructures("C:\\Users\\fede\\Desktop\\cegartix implementation\\af_examples\\af_1.txt");
+            structures.calculateAFDataStructures("C:\\Users\\fede\\Desktop\\cegartix-implementation\\af_examples\\af_7.txt");
             
             Semantic semantic = new Admisibility(structures); 
             IVec<IVecInt> clauses = semantic.calculateReduction();
