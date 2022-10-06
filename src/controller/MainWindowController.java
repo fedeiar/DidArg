@@ -61,7 +61,7 @@ public class MainWindowController {
         }
         
         IVec<IVecInt> clauses = semantics.calculateReduction();
-        String latexFormula = semantics.getLatexFormula();
+        String latexFormula = semantics.getLatexFullFormula();
 
         ExtensionEnumerator extensionEnumerator = new ExtensionEnumerator(structures.argumentsByInteger, clauses);
         try{

@@ -16,6 +16,8 @@ public class ConflictFreenes extends Semantics{
 
     public ConflictFreenes(AFDataStructures structures){
         super(structures);
+        //TODO: latexGenericFormula
+        latexFormulaHeader = "cf_{Ar, att} := ";
     }
     
     //TODO: esta bien?
@@ -25,7 +27,7 @@ public class ConflictFreenes extends Semantics{
         
         for(Entry<Integer, String> argument : arguments.entrySet()){
             argumentIsAttacked = false;
-            latexFormula += "(V_"+arguments.get(argument.getKey())+" \\rightarrow (";
+            latexFormulaBody += "(V_"+arguments.get(argument.getKey())+" \\rightarrow (";
             for(int i = 0; i < attacks.size(); i++){
                 IVecInt attack = attacks.get(i);
                 if(attack.get(1) == argument.getKey()){ // El argumento es atacado
@@ -35,7 +37,7 @@ public class ConflictFreenes extends Semantics{
                     clause.push(attack.get(0) * -1);
                     clauses.push(clause);
 
-                    latexFormula += "\\neg V_"+arguments.get(attack.get(0))+" \\land ";
+                    latexFormulaBody += "\\neg V_"+arguments.get(attack.get(0))+" \\land ";
                 }
             }
 
@@ -44,15 +46,15 @@ public class ConflictFreenes extends Semantics{
                 clause.push(argument.getKey());
                 clause.push(argument.getKey() * -1);
                 clauses.push(clause);
-                latexFormula += "\\top ";
+                latexFormulaBody += "\\top ";
             } else{
-                latexFormula = Utils.removeLastOperatorFromLatexFormula(latexFormula, 6); // Eliminamos el ultimo and agregado cuando reconociamos ataques.
+                latexFormulaBody = Utils.removeLastOperatorFromLatexFormula(latexFormulaBody, 6); // Eliminamos el ultimo and agregado cuando reconociamos ataques.
             }
 
-            latexFormula += ") ) \\land \\\\ ";
+            latexFormulaBody += ") ) \\land \\\\ ";
         }
 
-        latexFormula = Utils.removeLastOperatorFromLatexFormula(latexFormula, 9);
+        latexFormulaBody = Utils.removeLastOperatorFromLatexFormula(latexFormulaBody, 9);
         
         return clauses;
     }

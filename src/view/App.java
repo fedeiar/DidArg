@@ -23,7 +23,7 @@ public class App {
             
             Semantics semantic = new Admisibility(structures); 
             IVec<IVecInt> clauses = semantic.calculateReduction();
-            String latexFormula = semantic.getLatexFormula();
+            String latexFormula = semantic.getLatexFullFormula();
             
             ExtensionEnumerator extensionEnumerator = new ExtensionEnumerator(structures.argumentsByInteger, clauses);
             Set<Set<String>> extensions = extensionEnumerator.getExtensions();

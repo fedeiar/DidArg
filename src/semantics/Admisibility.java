@@ -18,25 +18,27 @@ public class Admisibility extends Semantics{
 
     public Admisibility(AFDataStructures structures){
         super(structures);
+        //TODO: latexGenericFormula
+        latexFormulaHeader = "adm_{Ar, att} := ";
         conflictFreenes = new ConflictFreenes(structures);
     }
 
     //TODO: esta bien?
     public IVec<IVecInt> calculateReduction(){
         clauses = conflictFreenes.calculateReduction();
-        latexFormula = conflictFreenes.getLatexFormula();
-        latexFormula += "\\land \\\\"; // Agregamos el and y salto de linea que sacamos en ConflictFreenes
+        latexFormulaBody = conflictFreenes.getLatexFormulaBody();
+        latexFormulaBody += "\\land \\\\"; // Agregamos el and y salto de linea que sacamos en ConflictFreenes
         VecInt clause;
         boolean argumentIsAttacked;
         boolean argumentIsDefendedFromAttack;
         
         for(Entry<Integer, String> argument : arguments.entrySet()){
-            latexFormula += "(V_"+argument.getValue()+" \\rightarrow ( ";
+            latexFormulaBody += "(V_"+argument.getValue()+" \\rightarrow ( ";
             argumentIsAttacked = false;
             for(int i = 0; i < attacks.size(); i++){ // buscamos los atacantes del argumento
                 IVecInt attack1 = attacks.get(i);
                 if(attack1.get(1) == argument.getKey()){ // significa que el argumento es atacado
-                    latexFormula += "( ";
+                    latexFormulaBody += "( ";
                     clause = new VecInt();
                     clause.push(argument.getKey() * -1);
                     argumentIsAttacked = true;
@@ -47,15 +49,15 @@ public class Admisibility extends Semantics{
                         if(attack2.get(1) == attackerOfArgument){ // significa que el argumento es defendido de ese ataque por attack2.get(0)
                             argumentIsDefendedFromAttack = true;
                             clause.push(attack2.get(0)); // agregamos al defensor del argumento
-                            latexFormula += "V_"+arguments.get(attack2.get(0))+" \\lor ";
+                            latexFormulaBody += "V_"+arguments.get(attack2.get(0))+" \\lor ";
                         }
                     }
                     if(!argumentIsDefendedFromAttack){
-                        latexFormula += "\\bot ";
+                        latexFormulaBody += "\\bot ";
                     } else{
-                        latexFormula = Utils.removeLastOperatorFromLatexFormula(latexFormula, 5); // Eliminamos el ultimo or agregado cuando reconociamos defensores.
+                        latexFormulaBody = Utils.removeLastOperatorFromLatexFormula(latexFormulaBody, 5); // Eliminamos el ultimo or agregado cuando reconociamos defensores.
                     }
-                    latexFormula += ") \\land ";
+                    latexFormulaBody += ") \\land ";
                     clauses.push(clause); // tenemos una clausula para un atacante.
                 }
             }
@@ -64,14 +66,14 @@ public class Admisibility extends Semantics{
                 clause.push(argument.getKey() * -1);
                 clause.push(argument.getKey());
                 clauses.push(clause);
-                latexFormula += "\\top ";
+                latexFormulaBody += "\\top ";
             } else{
-                latexFormula = Utils.removeLastOperatorFromLatexFormula(latexFormula, 6); // Eliminamos el ultimo and agregado cuando reconociamos ataques.
+                latexFormulaBody = Utils.removeLastOperatorFromLatexFormula(latexFormulaBody, 6); // Eliminamos el ultimo and agregado cuando reconociamos ataques.
             }
-            latexFormula += ") ) \\land \\\\ ";
+            latexFormulaBody += ") ) \\land \\\\ ";
         }
 
-        latexFormula = Utils.removeLastOperatorFromLatexFormula(latexFormula, 9);
+        latexFormulaBody = Utils.removeLastOperatorFromLatexFormula(latexFormulaBody, 9);
 
         return clauses;
     }

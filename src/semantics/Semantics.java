@@ -17,25 +17,26 @@ public abstract class Semantics{
     protected IVec<IVecInt> attacks;
     protected Map<Integer, String> arguments; 
     protected IVec<IVecInt> clauses;
-    protected String latexFormula;
-
+    protected String latexGenericFormula;
+    protected String latexFormulaHeader;
+    protected String latexFormulaBody;
    
     public Semantics(AFDataStructures structures){
         attacks = structures.attacks;
         arguments = structures.argumentsByInteger;
         clauses = new Vec<IVecInt>();
-        latexFormula = "";
-
-        //TODO: esta bien esto? ya que es la unica forma de que se tenga en cuenta cada variable por su cuenta sin pertenecer a una clausula.
-        /* for(Entry<Integer, String> argument : arguments.entrySet()){
-            int[] array = {argument.getKey(), argument.getKey() * -1};
-            clauses.push(new VecInt(array));
-        } */
+        latexGenericFormula = "";
+        latexFormulaBody = "";
+        latexFormulaHeader = "";
     }
 
     public abstract IVec<IVecInt> calculateReduction();
 
-    public String getLatexFormula(){
-        return latexFormula;
+    public String getLatexFormulaBody(){
+        return latexFormulaBody;
+    }
+
+    public String getLatexFullFormula(){
+        return latexGenericFormula + latexFormulaHeader + latexFormulaBody;
     }
 }
