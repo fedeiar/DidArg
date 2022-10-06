@@ -12,7 +12,7 @@ import org.sat4j.specs.IVecInt;
 import parser.AFDataStructures;
 import parser.ParserException;
 
-public abstract class Semantic{
+public abstract class Semantics{
 
     protected IVec<IVecInt> attacks;
     protected Map<Integer, String> arguments; 
@@ -20,7 +20,7 @@ public abstract class Semantic{
     protected String latexFormula;
 
    
-    public Semantic(AFDataStructures structures){
+    public Semantics(AFDataStructures structures){
         attacks = structures.attacks;
         arguments = structures.argumentsByInteger;
         clauses = new Vec<IVecInt>();
@@ -33,7 +33,7 @@ public abstract class Semantic{
         } */
     }
 
-    public abstract IVec<IVecInt> calculateReduction() throws IOException, ParserException;
+    public abstract IVec<IVecInt> calculateReduction();
 
     public String getLatexFormula(){
         return latexFormula;

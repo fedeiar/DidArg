@@ -11,7 +11,7 @@ import parser.AFDataStructures;
 import parser.ParserException;
 import util.Utils;
 
-public class Admisibility extends Semantic{
+public class Admisibility extends Semantics{
     
 
     protected ConflictFreenes conflictFreenes;
@@ -22,7 +22,7 @@ public class Admisibility extends Semantic{
     }
 
     //TODO: esta bien?
-    public IVec<IVecInt> calculateReduction() throws IOException, ParserException{
+    public IVec<IVecInt> calculateReduction(){
         clauses = conflictFreenes.calculateReduction();
         latexFormula = conflictFreenes.getLatexFormula();
         latexFormula += "\\land \\\\"; // Agregamos el and y salto de linea que sacamos en ConflictFreenes

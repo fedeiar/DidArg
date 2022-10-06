@@ -1,13 +1,21 @@
 package controller;
 
 import java.io.File;
+import java.util.Set;
 
 import javax.swing.JFileChooser;
 import javax.swing.plaf.FileChooserUI;
 
+import org.sat4j.specs.IVec;
+import org.sat4j.specs.IVecInt;
+
+import extensions.ExtensionEnumerator;
 import parser.AFDataStructures;
 import parser.FileManager;
 import parser.Parser;
+import semantics.Admisibility;
+import semantics.ConflictFreenes;
+import semantics.Semantics;
 import view.MainWindow;
 
 public class MainWindowController {
@@ -43,12 +51,30 @@ public class MainWindowController {
         }
     }
 
-    public void calculateConflictFreenes(){
-        //TODO
+    public void calculateExtensions(String semanticsString){
+        Semantics semantics = null;
+        // TODO: estos if anidados, hay alguna forma de evitarlos? ya que cada vez que agregue una semantica, tendría que venir a modificar este metodo.
+        if(semanticsString.equals("Conflict Freenes")){
+            semantics = new ConflictFreenes(structures);
+        } else if(semanticsString.equals("Admisibility")){
+            semantics = new Admisibility(structures);
+        }
+        
+        IVec<IVecInt> clauses = semantics.calculateReduction();
+        String latexFormula = semantics.getLatexFormula();
+
+        ExtensionEnumerator extensionEnumerator = new ExtensionEnumerator(structures.argumentsByInteger, clauses);
+        try{
+            Set<Set<String>> extensions = extensionEnumerator.getExtensions();
+            mainWindowView.setTAExtensionsText(extensions);
+            mainWindowView.setLatexLabel(latexFormula);
+        } catch(Exception e){
+            // TODO: analizar que tipo de error puede surgir y tirar una alerta adecuada
+            e.printStackTrace();
+        }
+        
     }
 
-    public void calculateAdmisibility(){
-        //TODO
-    }
+
 
 }

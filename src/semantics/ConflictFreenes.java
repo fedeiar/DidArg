@@ -12,14 +12,14 @@ import parser.AFDataStructures;
 import parser.ParserException;
 import util.Utils;
 
-public class ConflictFreenes extends Semantic{
+public class ConflictFreenes extends Semantics{
 
     public ConflictFreenes(AFDataStructures structures){
         super(structures);
     }
     
     //TODO: esta bien?
-    public IVec<IVecInt> calculateReduction() throws IOException, ParserException{
+    public IVec<IVecInt> calculateReduction(){
         VecInt clause;
         boolean argumentIsAttacked;
         

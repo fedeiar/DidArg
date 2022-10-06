@@ -3,6 +3,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Set;
 
 import controller.MainWindowController;
 
@@ -10,11 +11,12 @@ public class MainWindow extends javax.swing.JFrame {
 
     private MainWindowController mainWindowController;
 
-    private JLabel lblLatexFormula, lblTitleFormula, lblTitleFile, lblTitleSemantics, lblTitleExtensions;
+    private JLabel lblLatexFormula, lblTitleFormula, lblTitleFile, lblTitleSelectSemantics, lblTitleExtensions;
     private JPanel mainPanel;
     private JScrollPane SPFormula, SPFile, SPExtensions;
     private JTextArea TAFile, TAExtensions;
-    private JButton btnFile, btnAdmisibility, btnConflictFreenes;
+    private JButton btnFile, btnCalculateExtensions;
+    private JComboBox<String> cbSelectSemantics;
 
     private Latex latex;
 
@@ -32,6 +34,7 @@ public class MainWindow extends javax.swing.JFrame {
 		this.setBounds(100, 100, 1145, 646);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
+        this.setResizable(false);
 
         mainPanel = new JPanel();
 		mainPanel.setLayout(null);
@@ -65,19 +68,20 @@ public class MainWindow extends javax.swing.JFrame {
 		btnFile.setBounds(24, 76, 100, 23);
 		mainPanel.add(btnFile);
 
-        lblTitleSemantics = new JLabel("Select Semantics");
-		lblTitleSemantics.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTitleSemantics.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblTitleSemantics.setBounds(38, 448, 219, 35);
-		mainPanel.add(lblTitleSemantics);
+        lblTitleSelectSemantics = new JLabel("Select Semantics");
+		lblTitleSelectSemantics.setHorizontalAlignment(SwingConstants.LEFT);
+		lblTitleSelectSemantics.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblTitleSelectSemantics.setBounds(24, 422, 181, 35);
+		mainPanel.add(lblTitleSelectSemantics);
 
-        btnConflictFreenes = new JButton("Conflict Freenes");
-		btnConflictFreenes.setBounds(38, 505, 129, 23);
-		mainPanel.add(btnConflictFreenes);
+        btnCalculateExtensions = new JButton("Calculate Extensions");
+		btnCalculateExtensions.setBounds(24, 551, 165, 23);
+		mainPanel.add(btnCalculateExtensions);
 
-        btnAdmisibility = new JButton("Admisbility");
-		btnAdmisibility.setBounds(191, 505, 100, 23);
-		mainPanel.add(btnAdmisibility);
+        cbSelectSemantics = new JComboBox<String>();
+		cbSelectSemantics.setBounds(24, 482, 165, 22);
+        fillComboBox();
+		mainPanel.add(cbSelectSemantics);
 
         lblTitleExtensions = new JLabel("Extensions");
 		lblTitleExtensions.setHorizontalAlignment(SwingConstants.LEFT);
@@ -86,6 +90,7 @@ public class MainWindow extends javax.swing.JFrame {
 		mainPanel.add(lblTitleExtensions);
 
         TAExtensions = new JTextArea();
+        TAExtensions.setEditable(false);
         SPExtensions = new JScrollPane(TAExtensions);
 		SPExtensions.setBounds(749, 468, 353, 95);
 		mainPanel.add(SPExtensions);
@@ -98,17 +103,17 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        btnConflictFreenes.addActionListener(new ActionListener(){
+        btnCalculateExtensions.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent actionEvent){
-                //TODO
+                mainWindowController.calculateExtensions(cbSelectSemantics.getSelectedItem().toString());
             }
         });
 
-        btnAdmisibility.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent actionEvent){
-                //TODO
-            }
-        });
+    }
+
+    private void fillComboBox(){
+        cbSelectSemantics.addItem("Conflict Freenes");
+        cbSelectSemantics.addItem("Admisibility");
     }
 
     public void setLatexLabel(String latexString){
@@ -117,5 +122,9 @@ public class MainWindow extends javax.swing.JFrame {
 
     public void setTAFileText(String AFText){
         TAFile.setText(AFText);
+    }
+
+    public void setTAExtensionsText(Set<Set<String>> extensions){
+        TAExtensions.setText(extensions.toString());
     }
 }
