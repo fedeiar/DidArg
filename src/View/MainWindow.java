@@ -34,7 +34,7 @@ public class MainWindow extends javax.swing.JFrame {
 		this.setBounds(100, 100, 1145, 646);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
-        this.setResizable(false);
+        //this.setResizable(false);
 
         mainPanel = new JPanel();
 		mainPanel.setLayout(null);

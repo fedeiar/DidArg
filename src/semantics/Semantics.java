@@ -37,6 +37,6 @@ public abstract class Semantics{
     }
 
     public String getLatexFullFormula(){
-        return latexGenericFormula + latexFormulaHeader + latexFormulaBody;
+        return latexGenericFormula + " \\\\ " + latexFormulaHeader + latexFormulaBody;
     }
 }
