@@ -113,7 +113,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void fillComboBox(){
         cbSelectSemantics.addItem("Conflict Freenes");
-        cbSelectSemantics.addItem("Admisibility");
+        cbSelectSemantics.addItem("Admissibility");
     }
 
     public void setLatexLabel(String latexString){

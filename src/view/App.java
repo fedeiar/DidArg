@@ -9,7 +9,7 @@ import extensions.ExtensionEnumerator;
 import parser.AFDataStructures;
 import parser.FileManager;
 import parser.Parser;
-import semantics.Admisibility;
+import semantics.Admissibility;
 import semantics.ConflictFreenes;
 import semantics.Semantics;
 
@@ -21,7 +21,7 @@ public class App {
             AFDataStructures structures = new AFDataStructures();
             structures.calculateAFDataStructures("C:\\Users\\fede\\Desktop\\cegartix-implementation\\af_examples\\af_7.txt");
             
-            Semantics semantic = new Admisibility(structures); 
+            Semantics semantic = new Admissibility(structures); 
             IVec<IVecInt> clauses = semantic.calculateReduction();
             String latexFormula = semantic.getLatexFullFormula();
             

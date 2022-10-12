@@ -18,6 +18,7 @@ public abstract class Semantics{
     protected Map<Integer, String> arguments; 
     protected IVec<IVecInt> clauses;
     protected String latexGenericFormula;
+    //TODO: agregar otro string mas para decir Ar={<los argumentos del archivo>} <salto_de_linea> att={<los ataques del archivo>}
     protected String latexFormulaHeader;
     protected String latexFormulaBody;
    
@@ -26,6 +27,7 @@ public abstract class Semantics{
         arguments = structures.argumentsByInteger;
         clauses = new Vec<IVecInt>();
         latexGenericFormula = "";
+        //TODO: agregar otro string mas para decir Ar={<los argumentos del archivo>} <salto_de_linea> att={<los ataques del archivo>}
         latexFormulaBody = "";
         latexFormulaHeader = "";
     }

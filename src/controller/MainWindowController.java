@@ -13,7 +13,7 @@ import extensions.ExtensionEnumerator;
 import parser.AFDataStructures;
 import parser.FileManager;
 import parser.Parser;
-import semantics.Admisibility;
+import semantics.Admissibility;
 import semantics.ConflictFreenes;
 import semantics.Semantics;
 import view.MainWindow;
@@ -53,13 +53,13 @@ public class MainWindowController {
 
     public void calculateExtensions(String semanticsString){
         Semantics semantics = null;
-        // TODO: estos if anidados, hay alguna forma de evitarlos? ya que cada vez que agregue una semantica, tendría que venir a modificar este metodo.
+        // TODO: https://stackoverflow.com/questions/12485912/java-create-an-object-based-on-content-of-a-string
         if(semanticsString.equals("Conflict Freenes")){
             semantics = new ConflictFreenes(structures);
-        } else if(semanticsString.equals("Admisibility")){
-            semantics = new Admisibility(structures);
+        } else if(semanticsString.equals("Admissibility")){
+            semantics = new Admissibility(structures);
         }
-        
+
         IVec<IVecInt> clauses = semantics.calculateReduction();
         String latexFormula = semantics.getLatexFullFormula();
 
