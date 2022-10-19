@@ -2,6 +2,7 @@ package semantics;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.Set;
 import java.util.Map.Entry;
 
 import org.sat4j.core.Vec;
@@ -23,6 +24,8 @@ public abstract class Semantics{
     protected String latexAttacks;
     protected String latexFormulaHeader;
     protected String latexFormulaBody;
+
+    protected String explanation;
    
     public Semantics(AFDataStructures structures){
         attacks = structures.attacks;
@@ -55,6 +58,8 @@ public abstract class Semantics{
     }
 
     public abstract IVec<IVecInt> calculateReduction();
+
+    public abstract Set<Set<String>> getExtensions() throws Exception;
 
     public String getLatexFormulaBody(){
         return latexFormulaBody;

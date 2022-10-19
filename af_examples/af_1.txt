@@ -12,3 +12,4 @@ att(a,b). # repeated attack (must be ignored).
 
 # Conflict free sets: [[], [a], [b], [c], [d], [a, c], [a, d], [b, d]]
 # Admisible sets: [[], [a], [d], [a, c], [a, d]]
+# Preferred sets: [[a, c], [a, d]]

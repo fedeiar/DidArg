@@ -69,12 +69,9 @@ public class MainWindowController {
             semantics = new Admissibility(structures);
         }
 
-        IVec<IVecInt> clauses = semantics.calculateReduction();
-        String latexFormula = semantics.getLatexFullFormula();
-
-        ExtensionEnumerator extensionEnumerator = new ExtensionEnumerator(structures.argumentsByInteger, clauses);
         try{
-            Set<Set<String>> extensions = extensionEnumerator.getExtensions();
+            Set<Set<String>> extensions = semantics.getExtensions();
+            String latexFormula = semantics.getLatexFullFormula();
             mainWindowView.setTAExtensionsText(extensions);
             mainWindowView.setLatexLabel(latexFormula);
         } catch(Exception e){

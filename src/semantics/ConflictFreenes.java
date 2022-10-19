@@ -1,5 +1,6 @@
 package semantics;
 import java.io.IOException;
+import java.util.Set;
 import java.util.Map.Entry;
 
 import javax.swing.text.Utilities;
@@ -8,6 +9,7 @@ import org.sat4j.core.VecInt;
 import org.sat4j.specs.IVec;
 import org.sat4j.specs.IVecInt;
 
+import extensions.ExtensionEnumerator;
 import parser.AFDataStructures;
 import parser.ParserException;
 import util.Utils;
@@ -16,7 +18,7 @@ public class ConflictFreenes extends Semantics{
 
     public ConflictFreenes(AFDataStructures structures){
         super(structures);
-        //TODO: latexGenericFormula
+        latexGenericFormula = "cf_{Ar, att} := \\underset{a \\in Ar}{\\land} ( ( v_a \\rightarrow \\underset{(b, a) \\in att}{\\land} \\neg v_b) ";
         latexFormulaHeader = "cf_{Ar, att} := ";
     }
     
@@ -57,6 +59,15 @@ public class ConflictFreenes extends Semantics{
         latexFormulaBody = Utils.removeLastOperatorFromLatexFormula(latexFormulaBody, 9);
         
         return clauses;
+    }
+
+    public Set<Set<String>> getExtensions() throws Exception{
+
+        IVec<IVecInt> clauses = this.calculateReduction();
+        ExtensionEnumerator extensionEnumerator = new ExtensionEnumerator(arguments, clauses);
+        Set<Set<String>> extensions = extensionEnumerator.getExtensions();
+
+        return extensions;
     }
 
 }

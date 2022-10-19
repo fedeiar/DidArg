@@ -1,12 +1,14 @@
 package semantics;
 
 import java.io.IOException;
+import java.util.Set;
 import java.util.Map.Entry;
 
 import org.sat4j.core.VecInt;
 import org.sat4j.specs.IVec;
 import org.sat4j.specs.IVecInt;
 
+import extensions.ExtensionEnumerator;
 import parser.AFDataStructures;
 import parser.ParserException;
 import util.Utils;
@@ -77,5 +79,14 @@ public class Admissibility extends Semantics{
         latexFormulaBody = Utils.removeLastOperatorFromLatexFormula(latexFormulaBody, 9);
 
         return clauses;
+    }
+
+    public Set<Set<String>> getExtensions() throws Exception{
+
+        IVec<IVecInt> clauses = this.calculateReduction();
+        ExtensionEnumerator extensionEnumerator = new ExtensionEnumerator(arguments, clauses);
+        Set<Set<String>> extensions = extensionEnumerator.getExtensions();
+
+        return extensions;
     }
 }

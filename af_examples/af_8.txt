@@ -10,3 +10,4 @@ att(c,d).
 
 # Conflict free sets: 
 # Admisible sets: [[], [a], [b], [a, d], [b, d]]
+# Preferred sets: [[a, d], [b, d]]

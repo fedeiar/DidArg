@@ -11,6 +11,7 @@ import parser.FileManager;
 import parser.Parser;
 import semantics.Admissibility;
 import semantics.ConflictFreenes;
+import semantics.Preferred;
 import semantics.Semantics;
 
 
@@ -19,23 +20,23 @@ public class App {
 
         try{
             AFDataStructures structures = new AFDataStructures();
-            structures.calculateAFDataStructures("C:\\Users\\fede\\Desktop\\cegartix-implementation\\af_examples\\af_8.txt");
+            structures.calculateAFDataStructures("C:\\Users\\fede\\Desktop\\cegartix-implementation\\af_examples\\af_1.txt");
             
-            Semantics semantic = new Admissibility(structures); 
-            IVec<IVecInt> clauses = semantic.calculateReduction();
+            Semantics semantic = new Preferred(structures); 
+            Set<Set<String>> extensions = semantic.getExtensions();
             String latexFormula = semantic.getLatexFullFormula();
             
-            ExtensionEnumerator extensionEnumerator = new ExtensionEnumerator(structures.argumentsByInteger, clauses);
-            Set<Set<String>> extensions = extensionEnumerator.getExtensions();
-
             System.out.println(extensions.toString());
             System.out.println(latexFormula);
 
             MainWindowController mainWindowController = new MainWindowController();
             MainWindow mainWindowView = new MainWindow(mainWindowController);
-            mainWindowView.setVisible(true);
-            mainWindowView.setLatexLabel(latexFormula);
             mainWindowController.setMainWindowView(mainWindowView);
+            mainWindowView.setVisible(true);
+
+            mainWindowView.setLatexLabel(latexFormula);
+            mainWindowView.setTAExtensionsText(extensions);
+            
 
         } catch (ContradictionException e) {
             System.out.println("Unsatisfiable (trivial)!");
