@@ -27,6 +27,8 @@ public class Preferred extends Semantics{
         return admissibility.calculateReduction();
     }
 
+
+    //TODO: esta bien?
     public Set<Set<String>> getExtensions() throws Exception{
         IVec<IVecInt> clauses = this.calculateReduction();
         ExtensionEnumerator extensionEnumerator = new ExtensionEnumerator(arguments, clauses);
