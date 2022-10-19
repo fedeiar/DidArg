@@ -18,8 +18,6 @@ public class Admissibility extends Semantics{
 
     public Admissibility(AFDataStructures structures){
         super(structures);
-        //TODO: como evito que me salte de linea automaticamente?
-        //latexGenericFormula = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa \\land bbbbbbbbbbbbbbbbbbbbbbbbbbb";
         latexGenericFormula = "adm_{Ar, att} := \\underset{a \\in Ar}{\\land} ( ( v_a \\rightarrow \\underset{(b, a) \\in att}{\\land} \\neg v_b) \\land (v_a \\rightarrow \\underset{(b, a) \\in att}{\\land} (\\underset{(c, b) \\in att}{\\lor} v_c)))";
         
         latexFormulaHeader = "adm_{Ar, att} := ";

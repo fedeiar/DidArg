@@ -11,6 +11,7 @@ import org.sat4j.specs.IVecInt;
 
 import parser.AFDataStructures;
 import parser.ParserException;
+import util.Utils;
 
 public abstract class Semantics{
 
@@ -18,7 +19,8 @@ public abstract class Semantics{
     protected Map<Integer, String> arguments; 
     protected IVec<IVecInt> clauses;
     protected String latexGenericFormula;
-    //TODO: agregar otro string mas para decir Ar={<los argumentos del archivo>} <salto_de_linea> att={<los ataques del archivo>}
+    protected String latexArguments;
+    protected String latexAttacks;
     protected String latexFormulaHeader;
     protected String latexFormulaBody;
    
@@ -27,9 +29,29 @@ public abstract class Semantics{
         arguments = structures.argumentsByInteger;
         clauses = new Vec<IVecInt>();
         latexGenericFormula = "";
-        //TODO: agregar otro string mas para decir Ar={<los argumentos del archivo>} <salto_de_linea> att={<los ataques del archivo>}
+        buildLatexArguments();
+        buildLatexAttacks();
         latexFormulaBody = "";
         latexFormulaHeader = "";
+    }
+
+    private void buildLatexArguments(){
+        latexArguments = "Ar = \\{";
+        for(Entry<Integer, String> argument : arguments.entrySet()){
+            latexArguments += argument.getValue()+", ";
+        }
+        latexArguments = Utils.removeLastOperatorFromLatexFormula(latexArguments, 2);
+        latexArguments += "\\}";
+    }
+
+    private void buildLatexAttacks(){
+        latexAttacks = "att = \\{";
+        for(int i = 0; i < attacks.size(); i++){
+            IVecInt attack = attacks.get(i);
+            latexAttacks += "("+ arguments.get(attack.get(0)) +", "+ arguments.get(attack.get(1)) +"), ";
+        }
+        latexAttacks = Utils.removeLastOperatorFromLatexFormula(latexAttacks, 2);
+        latexAttacks += "\\}";
     }
 
     public abstract IVec<IVecInt> calculateReduction();
@@ -39,6 +61,6 @@ public abstract class Semantics{
     }
 
     public String getLatexFullFormula(){
-        return latexGenericFormula + " \\\\ " + latexFormulaHeader + latexFormulaBody;
+        return latexGenericFormula + " \\\\ " + latexArguments + " \\\\ " + latexAttacks + "  \\\\ " + latexFormulaHeader + latexFormulaBody;
     }
 }

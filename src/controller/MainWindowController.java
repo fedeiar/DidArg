@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import javax.swing.JFileChooser;
@@ -25,9 +27,15 @@ public class MainWindowController {
 
     private JFileChooser fileChooser;
 
+    private Map<String, String> semanticsClassNames;
+
     public MainWindowController(){
         structures = new AFDataStructures();
         fileChooser = new JFileChooser();
+
+        semanticsClassNames = new HashMap<String, String>();
+        semanticsClassNames.put("Conflict Freenes", "ConflictFreenes");
+        semanticsClassNames.put("Admisibility", "Admissibility");
     }
 
     public void setMainWindowView(MainWindow mainWindowView){
@@ -54,6 +62,7 @@ public class MainWindowController {
     public void calculateExtensions(String semanticsString){
         Semantics semantics = null;
         // TODO: https://stackoverflow.com/questions/12485912/java-create-an-object-based-on-content-of-a-string
+     
         if(semanticsString.equals("Conflict Freenes")){
             semantics = new ConflictFreenes(structures);
         } else if(semanticsString.equals("Admissibility")){
