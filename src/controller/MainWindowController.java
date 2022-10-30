@@ -17,6 +17,7 @@ import parser.FileManager;
 import parser.Parser;
 import semantics.Admissibility;
 import semantics.ConflictFreenes;
+import semantics.Preferred;
 import semantics.Semantics;
 import view.MainWindow;
 
@@ -67,6 +68,8 @@ public class MainWindowController {
             semantics = new ConflictFreenes(structures);
         } else if(semanticsString.equals("Admissibility")){
             semantics = new Admissibility(structures);
+        } else if(semanticsString.equals("preferred")){
+            semantics = new Preferred(structures);
         }
 
         try{

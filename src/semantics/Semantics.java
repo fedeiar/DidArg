@@ -61,6 +61,10 @@ public abstract class Semantics{
 
     public abstract Set<Set<String>> getExtensions() throws Exception;
 
+    public String getLatexFormulaHeader(){
+        return latexFormulaHeader;
+    }
+
     public String getLatexFormulaBody(){
         return latexFormulaBody;
     }

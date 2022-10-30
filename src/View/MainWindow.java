@@ -11,10 +11,10 @@ public class MainWindow extends javax.swing.JFrame {
 
     private MainWindowController mainWindowController;
 
-    private JLabel lblLatexFormula, lblTitleFormula, lblTitleFile, lblTitleSelectSemantics, lblTitleExtensions;
+    private JLabel lblLatexFormula, lblTitleBooleanFormula, lblTitleArgumentationFramework, lblTitleSelectSemantics, lblTitleExtensions, lblTitleExplanation;
     private JPanel mainPanel;
-    private JScrollPane SPFormula, SPFile, SPExtensions;
-    private JTextArea TAFile, TAExtensions;
+    private JScrollPane spLatexFormula, spFile, spExtensions, spExplanation;
+    private JTextArea taArgumentationFramework, taExtensions, taExplanation;
     private JButton btnFile, btnCalculateExtensions;
     private JComboBox<String> cbSelectSemantics;
 
@@ -31,38 +31,27 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     private void initGUIComponents() {
-		this.setBounds(100, 100, 1145, 646);
+		this.setBounds(200, 150, 1400, 646);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
-        //this.setResizable(false);
+        this.setResizable(false);
 
         mainPanel = new JPanel();
 		mainPanel.setLayout(null);
         this.setContentPane(mainPanel);
 
-        lblTitleFormula = new JLabel("Boolean Formula");
-		lblTitleFormula.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTitleFormula.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblTitleFormula.setBounds(749, 11, 153, 35);
-		mainPanel.add(lblTitleFormula);
+        lblTitleArgumentationFramework = new JLabel("Argumentation Framework");
+		lblTitleArgumentationFramework.setHorizontalAlignment(SwingConstants.LEFT);
+		lblTitleArgumentationFramework.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblTitleArgumentationFramework.setBounds(191, 11, 219, 35);
+		mainPanel.add(lblTitleArgumentationFramework);
 
-        lblLatexFormula = new JLabel("");
-
-        SPFormula = new JScrollPane(lblLatexFormula);
-		SPFormula.setBounds(749, 57, 333, 359);
-		mainPanel.add(SPFormula);
-
-        lblTitleFile = new JLabel("Argumentation Framework");
-		lblTitleFile.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTitleFile.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblTitleFile.setBounds(191, 11, 219, 35);
-		mainPanel.add(lblTitleFile);
-
-        TAFile = new JTextArea();
-        TAFile.setEditable(false);
-        SPFile = new JScrollPane(TAFile);
-		SPFile.setBounds(191, 50, 301, 237);
-		mainPanel.add(SPFile);
+        taArgumentationFramework = new JTextArea();
+        taArgumentationFramework.setEditable(false);
+        taArgumentationFramework.setFont(new Font("Calibri", Font.PLAIN, 16));
+        spFile = new JScrollPane(taArgumentationFramework);
+		spFile.setBounds(191, 57, 301, 237);
+		mainPanel.add(spFile);
 
         btnFile = new JButton("Select File");
 		btnFile.setBounds(24, 76, 100, 23);
@@ -83,17 +72,46 @@ public class MainWindow extends javax.swing.JFrame {
         fillComboBox();
 		mainPanel.add(cbSelectSemantics);
 
+        lblTitleBooleanFormula = new JLabel("Boolean Formula");
+		lblTitleBooleanFormula.setHorizontalAlignment(SwingConstants.LEFT);
+		lblTitleBooleanFormula.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblTitleBooleanFormula.setBounds(575, 11, 153, 35);
+		mainPanel.add(lblTitleBooleanFormula);
+
+        lblLatexFormula = new JLabel("");
+        spLatexFormula = new JScrollPane(lblLatexFormula);
+		spLatexFormula.setBounds(575, 57, 350, 359);
+		mainPanel.add(spLatexFormula);
+
         lblTitleExtensions = new JLabel("Extensions");
 		lblTitleExtensions.setHorizontalAlignment(SwingConstants.LEFT);
 		lblTitleExtensions.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblTitleExtensions.setBounds(749, 422, 153, 35);
+		lblTitleExtensions.setBounds(575, 422, 153, 35);
 		mainPanel.add(lblTitleExtensions);
 
-        TAExtensions = new JTextArea();
-        TAExtensions.setEditable(false);
-        SPExtensions = new JScrollPane(TAExtensions);
-		SPExtensions.setBounds(749, 468, 353, 95);
-		mainPanel.add(SPExtensions);
+        taExtensions = new JTextArea();
+        taExtensions.setEditable(false);
+        taExtensions.setLineWrap(true);
+        taExtensions.setWrapStyleWord(true);
+        taExtensions.setFont(new Font("Calibri", Font.PLAIN, 16));
+        spExtensions = new JScrollPane(taExtensions);
+		spExtensions.setBounds(575, 468, 350, 95);
+		mainPanel.add(spExtensions);
+
+        lblTitleExplanation = new JLabel("Explanation");
+		lblTitleExplanation.setHorizontalAlignment(SwingConstants.LEFT);
+		lblTitleExplanation.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblTitleExplanation.setBounds(950, 11, 153, 35);
+		mainPanel.add(lblTitleExplanation);
+
+        taExplanation = new JTextArea();
+        taExplanation.setEditable(false);
+        taExplanation.setLineWrap(true);
+        taExplanation.setWrapStyleWord(true);
+        taExplanation.setFont(new Font("Calibri", Font.PLAIN, 16));
+        spExplanation = new JScrollPane(taExplanation);
+		spExplanation.setBounds(950, 57, 350, 359);
+		mainPanel.add(spExplanation);
     }
 
     private void initListeners(){
@@ -114,6 +132,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void fillComboBox(){
         cbSelectSemantics.addItem("Conflict Freenes");
         cbSelectSemantics.addItem("Admissibility");
+        cbSelectSemantics.addItem("Preferred");
     }
 
     public void setLatexLabel(String latexString){
@@ -121,10 +140,10 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     public void setTAFileText(String AFText){
-        TAFile.setText(AFText);
+        taArgumentationFramework.setText(AFText);
     }
 
     public void setTAExtensionsText(Set<Set<String>> extensions){
-        TAExtensions.setText(extensions.toString());
+        taExtensions.setText(extensions.toString());
     }
 }

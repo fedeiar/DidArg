@@ -15,16 +15,18 @@ public class Preferred extends Semantics{
 
     public Preferred(AFDataStructures structures){
         super(structures);
-        latexGenericFormula = "adm_{Ar, att} := \\underset{a \\in Ar}{\\land} ( ( v_a \\rightarrow \\underset{(b, a) \\in att}{\\land} \\neg v_b) \\land (v_a \\rightarrow \\underset{(b, a) \\in att}{\\land} (\\underset{(c, b) \\in att}{\\lor} v_c)))";
+        latexGenericFormula = "\\\\ prf_{Ar, att} := adm_{Ar, att} \\land (\\nexists Ar' \\ | \\ Ar \\subset Ar' \\land adm_{Ar', att}),\\\\ where \\ Ar' \\subseteq Args";
         
-        latexFormulaHeader = "adm_{Ar, att} := ";
         admissibility = new Admissibility(structures);
-
+        latexFormulaHeader = admissibility.getLatexFormulaHeader();
+        
         explanation = ""; //TODO
     }
 
     public IVec<IVecInt> calculateReduction(){
-        return admissibility.calculateReduction();
+        IVec<IVecInt> clauses = admissibility.calculateReduction();
+        latexFormulaBody = admissibility.getLatexFormulaBody();
+        return clauses;
     }
 
 
