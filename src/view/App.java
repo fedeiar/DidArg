@@ -22,9 +22,9 @@ public class App {
             AFDataStructures structures = new AFDataStructures();
             structures.calculateAFDataStructures("C:\\Users\\fede\\Desktop\\cegartix-implementation\\af_examples\\af_1.txt");
             
-            Semantics semantic = new Preferred(structures); 
-            Set<Set<String>> extensions = semantic.getExtensions();
-            String latexFormula = semantic.getLatexFullFormula();
+            Semantics semantics = new Preferred(structures); 
+            Set<Set<String>> extensions = semantics.getExtensions();
+            String latexFormula = semantics.getLatexFullFormula();
             
             System.out.println(extensions.toString());
             System.out.println(latexFormula);
@@ -36,7 +36,7 @@ public class App {
 
             mainWindowView.setLatexLabel(latexFormula);
             mainWindowView.setTAExtensionsText(extensions);
-            
+            mainWindowView.setTAExplanationText(semantics.getExplanation());
 
         } catch (ContradictionException e) {
             System.out.println("Unsatisfiable (trivial)!");

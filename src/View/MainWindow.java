@@ -146,4 +146,8 @@ public class MainWindow extends javax.swing.JFrame {
     public void setTAExtensionsText(Set<Set<String>> extensions){
         taExtensions.setText(extensions.toString());
     }
+
+    public void setTAExplanationText(String explanation){
+        taExplanation.setText(explanation);
+    }
 }

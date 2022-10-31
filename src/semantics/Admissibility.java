@@ -24,6 +24,8 @@ public class Admissibility extends Semantics{
         
         latexFormulaHeader = "adm_{Ar, att} := ";
         conflictFreenes = new ConflictFreenes(structures);
+
+        explanation = "";
     }
 
     //TODO: esta bien?
@@ -43,7 +45,7 @@ public class Admissibility extends Semantics{
                 if(attack1.get(1) == argument.getKey()){ // significa que el argumento es atacado
                     latexFormulaBody += "( ";
                     clause = new VecInt();
-                    clause.push(argument.getKey() * -1);
+                    clause.push(argument.getKey() * -1); // agregamos al argumento negado por la regla de equivalencia con la implicacion
                     argumentIsAttacked = true;
                     int attackerOfArgument = attack1.get(0);
                     argumentIsDefendedFromAttack = false;

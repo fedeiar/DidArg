@@ -77,6 +77,7 @@ public class MainWindowController {
             String latexFormula = semantics.getLatexFullFormula();
             mainWindowView.setTAExtensionsText(extensions);
             mainWindowView.setLatexLabel(latexFormula);
+            mainWindowView.setTAExplanationText(semantics.getExplanation());
         } catch(Exception e){
             // TODO: analizar que tipo de error puede surgir y tirar una alerta adecuada
             e.printStackTrace();

@@ -72,4 +72,8 @@ public abstract class Semantics{
     public String getLatexFullFormula(){
         return latexGenericFormula + " \\\\ " + latexArguments + " \\\\ " + latexAttacks + "  \\\\ " + latexFormulaHeader + latexFormulaBody;
     }
+
+    public String getExplanation(){
+        return explanation;
+    }
 }

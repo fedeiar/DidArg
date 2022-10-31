@@ -20,6 +20,8 @@ public class ConflictFreenes extends Semantics{
         super(structures);
         latexGenericFormula = "cf_{Ar, att} := \\underset{a \\in Ar}{\\land} ( ( v_a \\rightarrow \\underset{(b, a) \\in att}{\\land} \\neg v_b) ";
         latexFormulaHeader = "cf_{Ar, att} := ";
+
+        explanation = "";
     }
     
     //TODO: esta bien?
