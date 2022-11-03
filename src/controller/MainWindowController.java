@@ -16,6 +16,7 @@ import parser.AFDataStructures;
 import parser.FileManager;
 import parser.Parser;
 import semantics.Admissibility;
+import semantics.Complete;
 import semantics.ConflictFreenes;
 import semantics.Preferred;
 import semantics.Semantics;
@@ -68,12 +69,15 @@ public class MainWindowController {
             semantics = new ConflictFreenes(structures);
         } else if(semanticsString.equals("Admissibility")){
             semantics = new Admissibility(structures);
+        } else if(semanticsString.equals("Complete")){
+            semantics = new Complete(structures);
         } else if(semanticsString.equals("preferred")){
             semantics = new Preferred(structures);
         }
 
         try{
             Set<Set<String>> extensions = semantics.getExtensions();
+            //TODO: reemplazar los [] por {}
             String latexFormula = semantics.getLatexFullFormula();
             mainWindowView.setTAExtensionsText(extensions);
             mainWindowView.setLatexLabel(latexFormula);

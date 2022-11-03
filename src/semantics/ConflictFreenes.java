@@ -18,7 +18,7 @@ public class ConflictFreenes extends Semantics{
 
     public ConflictFreenes(AFDataStructures structures){
         super(structures);
-        latexGenericFormula = "cf_{Ar, att} := \\underset{a \\in Ar}{\\land} ( ( v_a \\rightarrow \\underset{(b, a) \\in att}{\\land} \\neg v_b) ";
+        latexGenericFormula = "cf_{Ar, att} := \\underset{a \\in Ar}{\\bigwedge} ( ( v_a \\rightarrow \\underset{(b, a) \\in att}{\\bigwedge} \\neg v_b) ";
         latexFormulaHeader = "cf_{Ar, att} := ";
 
         explanation = "";
@@ -31,7 +31,7 @@ public class ConflictFreenes extends Semantics{
         
         for(Entry<Integer, String> argument : arguments.entrySet()){
             argumentIsAttacked = false;
-            latexFormulaBody += "(V_"+arguments.get(argument.getKey())+" \\rightarrow (";
+            latexFormulaBody += "(v_"+arguments.get(argument.getKey())+" \\rightarrow (";
             for(int i = 0; i < attacks.size(); i++){
                 IVecInt attack = attacks.get(i);
                 if(attack.get(1) == argument.getKey()){ // El argumento es atacado
@@ -41,7 +41,7 @@ public class ConflictFreenes extends Semantics{
                     clause.push(attack.get(0) * -1);
                     clauses.push(clause);
 
-                    latexFormulaBody += "\\neg V_"+arguments.get(attack.get(0))+" \\land ";
+                    latexFormulaBody += "\\neg v_"+arguments.get(attack.get(0))+" \\land ";
                 }
             }
 

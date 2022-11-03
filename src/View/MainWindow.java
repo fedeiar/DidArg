@@ -31,10 +31,12 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     private void initGUIComponents() {
-		this.setBounds(200, 150, 1400, 646);
+        this.setSize(1400, 646);
+        this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
         this.setResizable(false);
+        
 
         mainPanel = new JPanel();
 		mainPanel.setLayout(null);
@@ -132,6 +134,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void fillComboBox(){
         cbSelectSemantics.addItem("Conflict Freenes");
         cbSelectSemantics.addItem("Admissibility");
+        cbSelectSemantics.addItem("Complete");
         cbSelectSemantics.addItem("Preferred");
     }
 

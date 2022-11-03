@@ -9,3 +9,4 @@ att(d,a).
 
 # Conflict free sets: [[], [a], [b], [c], [d], [a, c], [b, d]]
 # Admisible sets: [[], [a, c], [b, d]]
+# Complete sets: [[], [b, d], [a, c]]

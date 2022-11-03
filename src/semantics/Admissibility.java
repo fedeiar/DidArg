@@ -14,13 +14,12 @@ import parser.ParserException;
 import util.Utils;
 
 public class Admissibility extends Semantics{
-    
 
     protected ConflictFreenes conflictFreenes;
 
     public Admissibility(AFDataStructures structures){
         super(structures);
-        latexGenericFormula = "adm_{Ar, att} := \\underset{a \\in Ar}{\\land} ( ( v_a \\rightarrow \\underset{(b, a) \\in att}{\\land} \\neg v_b) \\land (v_a \\rightarrow \\underset{(b, a) \\in att}{\\land} (\\underset{(c, b) \\in att}{\\lor} v_c)))";
+        latexGenericFormula = "adm_{Ar, att} := \\underset{a \\in Ar}{\\bigwedge} ( ( v_a \\rightarrow \\underset{(b, a) \\in att}{\\bigwedge} \\neg v_b) \\land (v_a \\rightarrow \\underset{(b, a) \\in att}{\\bigwedge} (\\underset{(c, b) \\in att}{\\bigvee} v_c)))";
         
         latexFormulaHeader = "adm_{Ar, att} := ";
         conflictFreenes = new ConflictFreenes(structures);
@@ -38,7 +37,7 @@ public class Admissibility extends Semantics{
         boolean argumentIsDefendedFromAttack;
         
         for(Entry<Integer, String> argument : arguments.entrySet()){
-            latexFormulaBody += "(V_"+argument.getValue()+" \\rightarrow ( ";
+            latexFormulaBody += "(v_"+argument.getValue()+" \\rightarrow ( ";
             argumentIsAttacked = false;
             for(int i = 0; i < attacks.size(); i++){ // buscamos los atacantes del argumento
                 IVecInt attack1 = attacks.get(i);
@@ -54,7 +53,7 @@ public class Admissibility extends Semantics{
                         if(attack2.get(1) == attackerOfArgument){ // significa que el argumento es defendido de ese ataque por attack2.get(0)
                             argumentIsDefendedFromAttack = true;
                             clause.push(attack2.get(0)); // agregamos al defensor del argumento
-                            latexFormulaBody += "V_"+arguments.get(attack2.get(0))+" \\lor ";
+                            latexFormulaBody += "v_"+arguments.get(attack2.get(0))+" \\lor ";
                         }
                     }
                     if(!argumentIsDefendedFromAttack){

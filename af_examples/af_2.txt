@@ -6,3 +6,4 @@ att(b,c).
 
 # Conflict free sets: [[], [a], [b], [c], [a, c]]
 # Admisible sets: [[], [a], [a, c]]
+# Complete sets: [[a, c]]
