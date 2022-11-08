@@ -146,8 +146,8 @@ public class MainWindow extends javax.swing.JFrame {
         taArgumentationFramework.setText(AFText);
     }
 
-    public void setTAExtensionsText(Set<Set<String>> extensions){
-        taExtensions.setText(extensions.toString());
+    public void setTAExtensionsText(String extensions){
+        taExtensions.setText(extensions);
     }
 
     public void setTAExplanationText(String explanation){

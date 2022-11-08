@@ -71,17 +71,19 @@ public class MainWindowController {
             semantics = new Admissibility(structures);
         } else if(semanticsString.equals("Complete")){
             semantics = new Complete(structures);
-        } else if(semanticsString.equals("preferred")){
+        } else if(semanticsString.equals("Preferred")){
             semantics = new Preferred(structures);
         }
 
         try{
             Set<Set<String>> extensions = semantics.getExtensions();
-            //TODO: reemplazar los [] por {}
+            String text_extensions = extensions.toString().replace("[", "{").replace("]", "}");
             String latexFormula = semantics.getLatexFullFormula();
-            mainWindowView.setTAExtensionsText(extensions);
+            String explanation = semantics.getExplanation();
+
+            mainWindowView.setTAExtensionsText(text_extensions);
             mainWindowView.setLatexLabel(latexFormula);
-            mainWindowView.setTAExplanationText(semantics.getExplanation());
+            mainWindowView.setTAExplanationText(explanation);
         } catch(Exception e){
             // TODO: analizar que tipo de error puede surgir y tirar una alerta adecuada
             e.printStackTrace();

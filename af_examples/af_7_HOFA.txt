@@ -14,4 +14,5 @@ att(e,e).
 
 # Conflict free sets: [[], [a], [b], [c], [d], [a, c], [a, d], [b, d]]
 # Admisible sets: [[], [a], [d], [a, d]]
+# Complete sets: [[a, d]]
 # Preferred sets: [[a, d]]
