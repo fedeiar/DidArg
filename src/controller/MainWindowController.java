@@ -53,6 +53,7 @@ public class MainWindowController {
                 String path = file.getAbsolutePath();
                 structures.calculateAFDataStructures(path);
                 mainWindowView.setTAFileText(structures.contentOfFile);
+                mainWindowView.enableExtensionsButton();
             } catch(Exception e){
                 //TODO: lanzar alguna alerta.
                 e.printStackTrace();

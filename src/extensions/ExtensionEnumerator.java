@@ -33,12 +33,11 @@ public class ExtensionEnumerator {
         Set<Set<String>> setsOfExtensions = new HashSet<Set<String>>();
 
         while(solver.isSatisfiable()){
-            
             int[] model = problem.model();
             Set<String> extension = new HashSet<String>();
-            for(int i = 1; i < model.length + 1; i++){
-                if(problem.model(i)){
-                    extension.add(arguments.get(i));
+            for(int i = 0; i < model.length; i++){
+                if(model[i] > 0){
+                    extension.add(arguments.get(i + 1));
                 }
             }
             setsOfExtensions.add(extension);

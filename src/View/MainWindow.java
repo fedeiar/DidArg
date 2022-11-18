@@ -15,7 +15,7 @@ public class MainWindow extends javax.swing.JFrame {
     private JPanel mainPanel;
     private JScrollPane spLatexFormula, spFile, spExtensions, spExplanation;
     private JTextArea taArgumentationFramework, taExtensions, taExplanation;
-    private JButton btnFile, btnCalculateExtensions;
+    private JButton btnFile, btnCalculateExtensions, btnAboutArgumentation;
     private JComboBox<String> cbSelectSemantics;
 
     private Latex latex;
@@ -26,18 +26,27 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow(MainWindowController mainWindowController){
         latex = new Latex();
         this.mainWindowController = mainWindowController;
+        setLook();
         initGUIComponents();
         initListeners();
     }
 
+    private void setLook(){
+        try {
+			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+    }
+
     private void initGUIComponents() {
+        this.setTitle("Didactic Argumentation");
         this.setSize(1400, 646);
         this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
         this.setResizable(false);
         
-
         mainPanel = new JPanel();
 		mainPanel.setLayout(null);
         this.setContentPane(mainPanel);
@@ -45,19 +54,23 @@ public class MainWindow extends javax.swing.JFrame {
         lblTitleArgumentationFramework = new JLabel("Argumentation Framework");
 		lblTitleArgumentationFramework.setHorizontalAlignment(SwingConstants.LEFT);
 		lblTitleArgumentationFramework.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblTitleArgumentationFramework.setBounds(191, 11, 219, 35);
+		lblTitleArgumentationFramework.setBounds(220, 11, 219, 35);
 		mainPanel.add(lblTitleArgumentationFramework);
 
         taArgumentationFramework = new JTextArea();
         taArgumentationFramework.setEditable(false);
         taArgumentationFramework.setFont(new Font("Calibri", Font.PLAIN, 16));
         spFile = new JScrollPane(taArgumentationFramework);
-		spFile.setBounds(191, 57, 301, 237);
+		spFile.setBounds(220, 57, 301, 237);
 		mainPanel.add(spFile);
 
         btnFile = new JButton("Select File");
-		btnFile.setBounds(24, 76, 100, 23);
+		btnFile.setBounds(24, 85, 100, 23);
 		mainPanel.add(btnFile);
+
+        btnAboutArgumentation = new JButton("About Argumentation");
+        btnAboutArgumentation.setBounds(24, 57, 175, 23);
+		mainPanel.add(btnAboutArgumentation);
 
         lblTitleSelectSemantics = new JLabel("Select Semantics");
 		lblTitleSelectSemantics.setHorizontalAlignment(SwingConstants.LEFT);
@@ -67,6 +80,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         btnCalculateExtensions = new JButton("Calculate Extensions");
 		btnCalculateExtensions.setBounds(24, 551, 165, 23);
+        btnCalculateExtensions.setEnabled(false);
 		mainPanel.add(btnCalculateExtensions);
 
         cbSelectSemantics = new JComboBox<String>();
@@ -152,5 +166,9 @@ public class MainWindow extends javax.swing.JFrame {
 
     public void setTAExplanationText(String explanation){
         taExplanation.setText(explanation);
+    }
+
+    public void enableExtensionsButton(){
+        btnCalculateExtensions.setEnabled(true);
     }
 }

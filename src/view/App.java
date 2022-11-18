@@ -1,6 +1,8 @@
 package view;
 import java.util.Set;
 import org.sat4j.specs.ContradictionException;
+import org.sat4j.specs.IVec;
+import org.sat4j.specs.IVecInt;
 
 import controller.MainWindowController;
 import parser.AFDataStructures;
@@ -16,13 +18,17 @@ public class App {
 
         try{
             AFDataStructures structures = new AFDataStructures();
-            structures.calculateAFDataStructures("C:\\Users\\fede\\Desktop\\cegartix-implementation\\af_examples\\af_1.txt");
+            structures.calculateAFDataStructures("C:\\Users\\fede\\Desktop\\cegartix-implementation\\af_examples\\af_2.txt");
             
-            Semantics semantics = new Complete(structures); 
+            Semantics semantics = new Admissibility(structures); 
             Set<Set<String>> extensions = semantics.getExtensions();
             String latexFormula = semantics.getLatexFullFormula();
             
             System.out.println(extensions.toString());
+            IVec<IVecInt> clauses = semantics.clauses;
+            for(int i = 0; i < clauses.size(); i++){
+                System.out.print("["+ clauses.get(i) +"]");
+            }
             System.out.println(semantics.getLatexFormulaBody());
 
             MainWindowController mainWindowController = new MainWindowController();

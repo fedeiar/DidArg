@@ -18,7 +18,7 @@ public abstract class Semantics{
 
     protected IVec<IVecInt> attacks;
     protected Map<Integer, String> arguments; 
-    protected IVec<IVecInt> clauses;
+    public IVec<IVecInt> clauses;
     protected String latexGenericFormula;
     protected String latexArguments;
     protected String latexAttacks;
