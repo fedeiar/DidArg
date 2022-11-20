@@ -20,7 +20,7 @@ public class App {
             AFDataStructures structures = new AFDataStructures();
             structures.calculateAFDataStructures("C:\\Users\\fede\\Desktop\\cegartix-implementation\\af_examples\\af_2.txt");
             
-            Semantics semantics = new Admissibility(structures); 
+            Semantics semantics = new Preferred(structures); 
             Set<Set<String>> extensions = semantics.getExtensions();
             String latexFormula = semantics.getLatexFullFormula();
             

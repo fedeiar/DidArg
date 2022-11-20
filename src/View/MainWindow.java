@@ -12,7 +12,7 @@ public class MainWindow extends javax.swing.JFrame {
     private MainWindowController mainWindowController;
 
     private JLabel lblLatexFormula, lblTitleBooleanFormula, lblTitleArgumentationFramework, lblTitleSelectSemantics, lblTitleExtensions, lblTitleExplanation;
-    private JPanel mainPanel;
+    private JPanel mainPanel, panelLeft, panelCenter, panelRight, panelBottom;
     private JScrollPane spLatexFormula, spFile, spExtensions, spExplanation;
     private JTextArea taArgumentationFramework, taExtensions, taExplanation;
     private JButton btnFile, btnCalculateExtensions, btnAboutArgumentation;
@@ -44,66 +44,73 @@ public class MainWindow extends javax.swing.JFrame {
         this.setSize(1400, 646);
         this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.getContentPane().setLayout(null);
-        this.setResizable(false);
+        this.setResizable(true);
         
         mainPanel = new JPanel();
-		mainPanel.setLayout(null);
+		mainPanel.setLayout(new BorderLayout());
         this.setContentPane(mainPanel);
 
+        panelLeft = new JPanel();
+        panelLeft.setLayout(new BoxLayout(panelLeft, BoxLayout.PAGE_AXIS));
+        mainPanel.add(panelLeft, BorderLayout.LINE_START);
+
+        panelCenter = new JPanel();
+        panelCenter.setLayout(new BoxLayout(panelCenter, BoxLayout.PAGE_AXIS));
+        mainPanel.add(panelCenter, BorderLayout.CENTER);
+
+        panelRight = new JPanel();
+        panelRight.setLayout(new BoxLayout(panelRight, BoxLayout.PAGE_AXIS));
+        mainPanel.add(panelRight, BorderLayout.LINE_END);
+
+        panelBottom = new JPanel();
+        panelBottom.setLayout(new FlowLayout());
+        mainPanel.add(panelBottom, BorderLayout.PAGE_END);
+
         lblTitleArgumentationFramework = new JLabel("Argumentation Framework");
-		lblTitleArgumentationFramework.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTitleArgumentationFramework.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblTitleArgumentationFramework.setBounds(220, 11, 219, 35);
-		mainPanel.add(lblTitleArgumentationFramework);
+		lblTitleArgumentationFramework.setFont(new Font("Century", Font.PLAIN, 18));
+        lblTitleArgumentationFramework.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+        lblTitleArgumentationFramework.setPreferredSize(new Dimension(240, 35));
+		panelLeft.add(lblTitleArgumentationFramework);
 
         taArgumentationFramework = new JTextArea();
         taArgumentationFramework.setEditable(false);
         taArgumentationFramework.setFont(new Font("Calibri", Font.PLAIN, 16));
         spFile = new JScrollPane(taArgumentationFramework);
-		spFile.setBounds(220, 57, 301, 237);
-		mainPanel.add(spFile);
-
-        btnFile = new JButton("Select File");
-		btnFile.setBounds(24, 85, 100, 23);
-		mainPanel.add(btnFile);
+		panelLeft.add(spFile);
 
         btnAboutArgumentation = new JButton("About Argumentation");
-        btnAboutArgumentation.setBounds(24, 57, 175, 23);
-		mainPanel.add(btnAboutArgumentation);
+		panelBottom.add(btnAboutArgumentation);
 
-        lblTitleSelectSemantics = new JLabel("Select Semantics");
-		lblTitleSelectSemantics.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTitleSelectSemantics.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblTitleSelectSemantics.setBounds(24, 422, 181, 35);
-		mainPanel.add(lblTitleSelectSemantics);
-
-        btnCalculateExtensions = new JButton("Calculate Extensions");
-		btnCalculateExtensions.setBounds(24, 551, 165, 23);
-        btnCalculateExtensions.setEnabled(false);
-		mainPanel.add(btnCalculateExtensions);
+        btnFile = new JButton("Select File");
+        btnFile.setToolTipText("Select a file containing an argumentation framework.");
+		panelBottom.add(btnFile);
 
         cbSelectSemantics = new JComboBox<String>();
-		cbSelectSemantics.setBounds(24, 482, 165, 22);
+        cbSelectSemantics.setToolTipText("Choose the semantics of which you want to enumerate extensions");
         fillComboBox();
-		mainPanel.add(cbSelectSemantics);
+		panelBottom.add(cbSelectSemantics);
+
+        btnCalculateExtensions = new JButton("Calculate Extensions");
+        btnCalculateExtensions.setEnabled(false);
+        btnCalculateExtensions.setToolTipText("Calculate the extensions for the selected semantics");
+		panelBottom.add(btnCalculateExtensions);
 
         lblTitleBooleanFormula = new JLabel("Boolean Formula");
-		lblTitleBooleanFormula.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTitleBooleanFormula.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblTitleBooleanFormula.setBounds(575, 11, 153, 35);
-		mainPanel.add(lblTitleBooleanFormula);
+		lblTitleBooleanFormula.setFont(new Font("Century", Font.PLAIN, 20));
+        lblTitleBooleanFormula.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+        lblTitleBooleanFormula.setPreferredSize(new Dimension(153,35));
+		panelCenter.add(lblTitleBooleanFormula);
 
         lblLatexFormula = new JLabel("");
         spLatexFormula = new JScrollPane(lblLatexFormula);
-		spLatexFormula.setBounds(575, 57, 350, 359);
-		mainPanel.add(spLatexFormula);
+        spLatexFormula.setPreferredSize(new Dimension(400, 400));
+		panelCenter.add(spLatexFormula);
 
         lblTitleExtensions = new JLabel("Extensions");
-		lblTitleExtensions.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTitleExtensions.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblTitleExtensions.setBounds(575, 422, 153, 35);
-		mainPanel.add(lblTitleExtensions);
+		lblTitleExtensions.setFont(new Font("Century", Font.PLAIN, 20));
+        lblTitleExtensions.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+        lblTitleExtensions.setPreferredSize(new Dimension(153, 35));
+		panelRight.add(lblTitleExtensions);
 
         taExtensions = new JTextArea();
         taExtensions.setEditable(false);
@@ -111,23 +118,23 @@ public class MainWindow extends javax.swing.JFrame {
         taExtensions.setWrapStyleWord(true);
         taExtensions.setFont(new Font("Calibri", Font.PLAIN, 16));
         spExtensions = new JScrollPane(taExtensions);
-		spExtensions.setBounds(575, 468, 350, 95);
-		mainPanel.add(spExtensions);
+        spExtensions.setPreferredSize(new Dimension(200, 95));
+		panelRight.add(spExtensions);
 
         lblTitleExplanation = new JLabel("Explanation");
-		lblTitleExplanation.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTitleExplanation.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblTitleExplanation.setBounds(950, 11, 153, 35);
-		mainPanel.add(lblTitleExplanation);
+		lblTitleExplanation.setFont(new Font("Century", Font.PLAIN, 20));
+        lblTitleExplanation.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+        lblTitleExplanation.setPreferredSize(new Dimension(153, 35));
+		panelRight.add(lblTitleExplanation);
 
         taExplanation = new JTextArea();
         taExplanation.setEditable(false);
         taExplanation.setLineWrap(true);
         taExplanation.setWrapStyleWord(true);
         taExplanation.setFont(new Font("Calibri", Font.PLAIN, 16));
-        spExplanation = new JScrollPane(taExplanation);
-		spExplanation.setBounds(950, 57, 350, 359);
-		mainPanel.add(spExplanation);
+        spExplanation = new JScrollPane(taExplanation);;
+        spExplanation.setPreferredSize(new Dimension(250, 200));
+		panelRight.add(spExplanation);
     }
 
     private void initListeners(){
