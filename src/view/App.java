@@ -4,7 +4,7 @@ import org.sat4j.specs.ContradictionException;
 import org.sat4j.specs.IVec;
 import org.sat4j.specs.IVecInt;
 
-import controller.MainWindowController;
+import controller.ControllerMainWindow;
 import parser.AFDataStructures;
 import semantics.Admissibility;
 import semantics.Complete;
@@ -20,7 +20,7 @@ public class App {
             AFDataStructures structures = new AFDataStructures();
             structures.calculateAFDataStructures("C:\\Users\\fede\\Desktop\\cegartix-implementation\\af_examples\\af_2.txt");
             
-            Semantics semantics = new Preferred(structures); 
+            Semantics semantics = new Complete(structures); 
             Set<Set<String>> extensions = semantics.getExtensions();
             String latexFormula = semantics.getLatexFullFormula();
             
@@ -31,9 +31,16 @@ public class App {
             }
             System.out.println(semantics.getLatexFormulaBody());
 
-            MainWindowController mainWindowController = new MainWindowController();
-            MainWindow mainWindowView = new MainWindow(mainWindowController);
-            mainWindowController.setMainWindowView(mainWindowView);
+            // ESTO DE ARRIBA DESPUES SE BORRA
+
+            ControllerMainWindow controllerMainWindow = new ControllerMainWindow();
+            ViewMainWindow mainWindowView = new ViewMainWindow(controllerMainWindow);
+            controllerMainWindow.setMainWindowView(mainWindowView);
+
+            ViewAboutArgumentation viewAboutArgumentation = new ViewAboutArgumentation(controllerMainWindow);
+            controllerMainWindow.setViewAboutArgumentation(viewAboutArgumentation);
+
+            // ESTO DE ABAJO DESPUES SE BORRA
 
             mainWindowView.setLatexLabel(latexFormula);
             mainWindowView.setTAExtensionsText(extensions.toString());

@@ -24,7 +24,7 @@ public class Admissibility extends Semantics{
         latexFormulaHeader = "adm_{Ar, att} := ";
         conflictFreenes = new ConflictFreenes(structures);
 
-        explanation = "";
+        explanation = "In adittion to having to be conflict-free, an admissible set must also defend every argument it has from every attack that any of its arguments recieves. Part of the formula is the same as the one for conflict-freenes, the other part encodes that if an argument 'a' is accepted, then for all of its attackers 'b', at least one argument 'c' that attacks 'b' must be accepted.";
     }
 
     //TODO: esta bien?

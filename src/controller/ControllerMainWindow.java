@@ -20,40 +20,44 @@ import semantics.Complete;
 import semantics.ConflictFreenes;
 import semantics.Preferred;
 import semantics.Semantics;
-import view.MainWindow;
+import view.ViewAboutArgumentation;
+import view.ViewMainWindow;
 
-public class MainWindowController {
+public class ControllerMainWindow {
     
-    private MainWindow mainWindowView;
+    private ViewMainWindow viewMainWindow;
+    private ViewAboutArgumentation viewAboutArgumentation;
     private AFDataStructures structures;
 
     private JFileChooser fileChooser;
+    private boolean isFileLoaded;
 
-    private Map<String, String> semanticsClassNames;
 
-    public MainWindowController(){
+    public ControllerMainWindow(){
         structures = new AFDataStructures();
         fileChooser = new JFileChooser();
-
-        semanticsClassNames = new HashMap<String, String>();
-        semanticsClassNames.put("Conflict Freenes", "ConflictFreenes");
-        semanticsClassNames.put("Admisibility", "Admissibility");
+        isFileLoaded = false;
     }
 
-    public void setMainWindowView(MainWindow mainWindowView){
-        this.mainWindowView = mainWindowView;
+    public void setMainWindowView(ViewMainWindow mainWindowView){
+        this.viewMainWindow = mainWindowView;
+    }
+
+    public void setViewAboutArgumentation(ViewAboutArgumentation viewAboutArgumentation){
+        this.viewAboutArgumentation = viewAboutArgumentation;
     }
 
     public void loadArgumentationFramework(){
-        int returnValue = fileChooser.showOpenDialog(mainWindowView);
+        int returnValue = fileChooser.showOpenDialog(viewMainWindow);
 
         if(returnValue == JFileChooser.APPROVE_OPTION){
             try{
                 File file = fileChooser.getSelectedFile();
                 String path = file.getAbsolutePath();
+                isFileLoaded = true;
                 structures.calculateAFDataStructures(path);
-                mainWindowView.setTAFileText(structures.contentOfFile);
-                mainWindowView.enableExtensionsButton();
+                viewMainWindow.setTAFileText(structures.contentOfFile);
+                viewMainWindow.enableExtensionsButton();
             } catch(Exception e){
                 //TODO: lanzar alguna alerta.
                 e.printStackTrace();
@@ -82,9 +86,9 @@ public class MainWindowController {
             String latexFormula = semantics.getLatexFullFormula();
             String explanation = semantics.getExplanation();
 
-            mainWindowView.setTAExtensionsText(text_extensions);
-            mainWindowView.setLatexLabel(latexFormula);
-            mainWindowView.setTAExplanationText(explanation);
+            viewMainWindow.setTAExtensionsText(text_extensions);
+            viewMainWindow.setLatexLabel(latexFormula);
+            viewMainWindow.setTAExplanationText(explanation);
         } catch(Exception e){
             // TODO: analizar que tipo de error puede surgir y tirar una alerta adecuada
             e.printStackTrace();
@@ -92,6 +96,14 @@ public class MainWindowController {
         
     }
 
+    public void openAboutArgumentationWindow(){
+        viewAboutArgumentation.setVisible(true);
+        viewMainWindow.disableAllButtons();
+    }
 
+    public void closeAboutArgumentationWindow(){
+        viewAboutArgumentation.setVisible(false);
+        viewMainWindow.recoverButtons(isFileLoaded);
+    }
 
 }

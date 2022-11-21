@@ -5,11 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Set;
 
-import controller.MainWindowController;
+import controller.ControllerMainWindow;
 
-public class MainWindow extends javax.swing.JFrame {
+public class ViewMainWindow extends javax.swing.JFrame{
 
-    private MainWindowController mainWindowController;
+    private ControllerMainWindow controllerMainWindow;
 
     private JLabel lblLatexFormula, lblTitleBooleanFormula, lblTitleArgumentationFramework, lblTitleSelectSemantics, lblTitleExtensions, lblTitleExplanation;
     private JPanel mainPanel, panelLeft, panelCenter, panelRight, panelBottom;
@@ -23,9 +23,9 @@ public class MainWindow extends javax.swing.JFrame {
     private final int LATEX_FORMULA_SIZE = 20;
 
 
-    public MainWindow(MainWindowController mainWindowController){
+    public ViewMainWindow(ControllerMainWindow controllerMainWindow){
         latex = new Latex();
-        this.mainWindowController = mainWindowController;
+        this.controllerMainWindow = controllerMainWindow;
         setLook();
         initGUIComponents();
         initListeners();
@@ -45,6 +45,7 @@ public class MainWindow extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(true);
+
         
         mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
@@ -140,13 +141,19 @@ public class MainWindow extends javax.swing.JFrame {
     private void initListeners(){
         btnFile.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent actionEvent){
-                mainWindowController.loadArgumentationFramework();
+                controllerMainWindow.loadArgumentationFramework();
             }
         });
 
         btnCalculateExtensions.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent actionEvent){
-                mainWindowController.calculateExtensions(cbSelectSemantics.getSelectedItem().toString());
+                controllerMainWindow.calculateExtensions(cbSelectSemantics.getSelectedItem().toString());
+            }
+        });
+
+        btnAboutArgumentation.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent actionevent){
+                controllerMainWindow.openAboutArgumentationWindow();
             }
         });
 
@@ -177,5 +184,21 @@ public class MainWindow extends javax.swing.JFrame {
 
     public void enableExtensionsButton(){
         btnCalculateExtensions.setEnabled(true);
+    }
+
+    public void disableAllButtons(){
+        btnAboutArgumentation.setEnabled(false);
+        btnFile.setEnabled(false);
+        cbSelectSemantics.setEnabled(false);
+        btnCalculateExtensions.setEnabled(false);
+    }
+
+    public void recoverButtons(boolean isFileLoaded){
+        btnAboutArgumentation.setEnabled(true);
+        btnFile.setEnabled(true);
+        cbSelectSemantics.setEnabled(true);
+        if(isFileLoaded){
+            btnCalculateExtensions.setEnabled(true);
+        }
     }
 }

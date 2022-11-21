@@ -21,7 +21,7 @@ public class ConflictFreenes extends Semantics{
         latexGenericFormula = "cf_{Ar, att} := \\underset{a \\in Ar}{\\bigwedge} ( ( v_a \\rightarrow \\underset{(b, a) \\in att}{\\bigwedge} \\neg v_b) ";
         latexFormulaHeader = "cf_{Ar, att} := ";
 
-        explanation = "";
+        explanation = "Despite conflict-freenes is not a semantics, but it's a basic requirement that all semantics in this application must satisfy. The formula is basically saying that if an argument 'a' is accepted, none other argument 'b' that attacks 'a' or is attacked by 'a' can be accepted.";
     }
     
     //TODO: esta bien?
