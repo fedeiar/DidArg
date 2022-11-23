@@ -1,9 +1,6 @@
 package semantics;
-import java.io.IOException;
 import java.util.Set;
 import java.util.Map.Entry;
-
-import javax.swing.text.Utilities;
 
 import org.sat4j.core.VecInt;
 import org.sat4j.specs.IVec;
@@ -11,7 +8,6 @@ import org.sat4j.specs.IVecInt;
 
 import extensions.ExtensionEnumerator;
 import parser.AFDataStructures;
-import parser.ParserException;
 import util.Utils;
 
 public class ConflictFreenes extends Semantics{

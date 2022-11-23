@@ -1,20 +1,11 @@
 package controller;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 import javax.swing.JFileChooser;
-import javax.swing.plaf.FileChooserUI;
 
-import org.sat4j.specs.IVec;
-import org.sat4j.specs.IVecInt;
-
-import extensions.ExtensionEnumerator;
 import parser.AFDataStructures;
-import parser.FileManager;
-import parser.Parser;
 import semantics.Admissibility;
 import semantics.Complete;
 import semantics.ConflictFreenes;

@@ -115,7 +115,6 @@ public class Complete extends Semantics {
                 boolean defendedFromThisAttack = false;
                 for(int j = 0; j < attacks.size(); j++){
                     IVecInt attack2 = attacks.get(j);
-                    //System.out.println(arguments.get(attack2.get(0))+" "+extension.contains(arguments.get(attack2.get(0))));
                     if(attack2.get(1) == attacker && extension.contains(arguments.get(attack2.get(0))) ){ // Si alguien de la extension ataca al atacante, entonces defiende al argumento de ese ataque.
                         defendedFromThisAttack = true;
                         break;
@@ -127,8 +126,6 @@ public class Complete extends Semantics {
                 }
             }
         }
-
-        //System.out.println(argument.getValue()+"  "+extension +"  "+ isDefendedByExtension);
 
         return isDefendedByExtension;
     }

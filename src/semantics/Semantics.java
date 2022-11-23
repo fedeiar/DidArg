@@ -1,17 +1,14 @@
 package semantics;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 
 import org.sat4j.core.Vec;
-import org.sat4j.core.VecInt;
 import org.sat4j.specs.IVec;
 import org.sat4j.specs.IVecInt;
 
 import parser.AFDataStructures;
-import parser.ParserException;
 import util.Utils;
 
 public abstract class Semantics{
@@ -34,8 +31,8 @@ public abstract class Semantics{
         latexGenericFormula = "";
         buildLatexArguments();
         buildLatexAttacks();
-        latexFormulaBody = "";
         latexFormulaHeader = "";
+        latexFormulaBody = "";
     }
 
     private void buildLatexArguments(){

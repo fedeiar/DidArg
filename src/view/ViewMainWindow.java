@@ -3,7 +3,6 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Set;
 
 import controller.ControllerMainWindow;
 
@@ -11,7 +10,7 @@ public class ViewMainWindow extends javax.swing.JFrame{
 
     private ControllerMainWindow controllerMainWindow;
 
-    private JLabel lblLatexFormula, lblTitleBooleanFormula, lblTitleArgumentationFramework, lblTitleSelectSemantics, lblTitleExtensions, lblTitleExplanation;
+    private JLabel lblLatexFormula, lblTitleBooleanFormula, lblTitleArgumentationFramework, lblTitleExtensions, lblTitleExplanation;
     private JPanel mainPanel, panelLeft, panelCenter, panelRight, panelBottom;
     private JScrollPane spLatexFormula, spFile, spExtensions, spExplanation;
     private JTextArea taArgumentationFramework, taExtensions, taExplanation;
@@ -26,17 +25,8 @@ public class ViewMainWindow extends javax.swing.JFrame{
     public ViewMainWindow(ControllerMainWindow controllerMainWindow){
         latex = new Latex();
         this.controllerMainWindow = controllerMainWindow;
-        setLook();
         initGUIComponents();
         initListeners();
-    }
-
-    private void setLook(){
-        try {
-			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
     }
 
     private void initGUIComponents() {

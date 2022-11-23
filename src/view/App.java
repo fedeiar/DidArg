@@ -1,5 +1,8 @@
 package view;
 import java.util.Set;
+
+import javax.swing.UIManager;
+
 import org.sat4j.specs.ContradictionException;
 import org.sat4j.specs.IVec;
 import org.sat4j.specs.IVecInt;
@@ -33,6 +36,12 @@ public class App {
 
             // ESTO DE ARRIBA DESPUES SE BORRA
 
+            try {
+                UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+            } catch (Exception e) {
+                e.printStackTrace();
+            } 
+
             ControllerMainWindow controllerMainWindow = new ControllerMainWindow();
             ViewMainWindow mainWindowView = new ViewMainWindow(controllerMainWindow);
             controllerMainWindow.setMainWindowView(mainWindowView);
@@ -40,12 +49,13 @@ public class App {
             ViewAboutArgumentation viewAboutArgumentation = new ViewAboutArgumentation(controllerMainWindow);
             controllerMainWindow.setViewAboutArgumentation(viewAboutArgumentation);
 
+            mainWindowView.setVisible(true);
+
             // ESTO DE ABAJO DESPUES SE BORRA
 
             mainWindowView.setLatexLabel(latexFormula);
             mainWindowView.setTAExtensionsText(extensions.toString());
             mainWindowView.setTAExplanationText(semantics.getExplanation());
-            mainWindowView.setVisible(true);
 
         } catch (ContradictionException e) {
             System.out.println("Unsatisfiable (trivial)!");

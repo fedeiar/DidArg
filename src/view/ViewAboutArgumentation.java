@@ -6,14 +6,13 @@ import controller.ControllerMainWindow;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Set;
 
 
 public class ViewAboutArgumentation extends javax.swing.JFrame{
     
     private ControllerMainWindow controllerMainWindow;
 
-    private JPanel mainPanel, panelBottom, panelCenter;
+    private JPanel mainPanel, panelBottom;
     private JEditorPane taAboutArgumentation;
     private JScrollPane spAboutArgumentation;
     private JButton btnClose;
