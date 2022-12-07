@@ -17,10 +17,10 @@ import semantics.Semantics;
 
 public class App {
     public static void main(String[] args) throws Exception {
-
+/* 
         try{
             AFDataStructures structures = new AFDataStructures();
-            structures.calculateAFDataStructures("C:\\Users\\fede\\Desktop\\cegartix-implementation\\af_examples\\af_2.txt");
+            structures.calculateAFDataStructures("C:\\Users\\fede\\Desktop\\DidArg\\af_examples\\af_2.txt");
             
             Semantics semantics = new Complete(structures); 
             Set<Set<String>> extensions = semantics.getExtensions();
@@ -31,7 +31,7 @@ public class App {
             for(int i = 0; i < clauses.size(); i++){
                 System.out.print("["+ clauses.get(i) +"]");
             }
-            System.out.println(semantics.getLatexFormulaBody());
+            System.out.println(semantics.getLatexFormulaBody()); */
 
             // ESTO DE ARRIBA DESPUES SE BORRA
 
@@ -51,7 +51,7 @@ public class App {
             mainWindowView.setVisible(true);
 
             // ESTO DE ABAJO DESPUES SE BORRA
-
+/* 
             mainWindowView.setLatexLabel(latexFormula);
             mainWindowView.setTAExtensionsText(extensions.toString());
             mainWindowView.setTAExplanationText(semantics.getExplanation());
@@ -60,7 +60,7 @@ public class App {
             System.out.println("Unsatisfiable (trivial)!");
         } catch(Exception e){
             System.out.println(e.getMessage());
-        }
+        } */
 
     }
 
