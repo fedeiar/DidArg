@@ -67,6 +67,7 @@ public class ViewMainWindow extends javax.swing.JFrame{
         taArgumentationFramework.setEditable(false);
         taArgumentationFramework.setFont(new Font("Calibri", Font.PLAIN, 16));
         spFile = new JScrollPane(taArgumentationFramework);
+        spFile.setPreferredSize(new Dimension(200, 500));
 		panelLeft.add(spFile);
 
         btnAboutArgumentation = new JButton("About Argumentation");
