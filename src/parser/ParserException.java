@@ -7,6 +7,6 @@ public class ParserException extends Exception{
     }
 
     private static String buildMessage(String message, int lineNumber){
-        return "error at line "+lineNumber+": "+message;
+        return "Error at line "+lineNumber+": "+message+".";
     }
 }

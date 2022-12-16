@@ -1,11 +1,13 @@
 package controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Set;
 
 import javax.swing.JFileChooser;
 
 import parser.AFDataStructures;
+import parser.ParserException;
 import semantics.Admissibility;
 import semantics.Complete;
 import semantics.ConflictFreenes;
@@ -49,8 +51,10 @@ public class ControllerMainWindow {
                 structures.calculateAFDataStructures(path);
                 viewMainWindow.setTAFileText(structures.contentOfFile);
                 viewMainWindow.enableExtensionsButton();
-            } catch(Exception e){
-                //TODO: lanzar alguna alerta.
+            } catch(ParserException e){
+                viewMainWindow.showErrorDialog(e.getMessage());
+                e.printStackTrace();
+            } catch(IOException e){
                 e.printStackTrace();
             }
             

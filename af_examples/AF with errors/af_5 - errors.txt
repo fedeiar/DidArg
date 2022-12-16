@@ -1,0 +1,10 @@
+# Error: invalid definition of att in line 8.
+
+arg(a).
+arg(b).
+arg(c).
+arg(d).
+att(a,b).
+att(b,c,d).
+att(c,d).
+att(d,c).

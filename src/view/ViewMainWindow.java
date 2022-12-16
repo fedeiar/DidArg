@@ -192,4 +192,8 @@ public class ViewMainWindow extends javax.swing.JFrame{
             btnCalculateExtensions.setEnabled(true);
         }
     }
+
+    public void showErrorDialog(String message){
+        JOptionPane.showMessageDialog(this, message+" Correct the error and upload the file again", "Syntax error in file", JOptionPane.ERROR_MESSAGE);
+    }
 }

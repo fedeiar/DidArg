@@ -1,0 +1,10 @@
+# Error: invalid definition of arg in line 3.
+
+arg(a, b).
+arg(b).
+arg(c).
+arg(d).
+att(a,b).
+att(b,c).
+att(c,d).
+att(d,c).
