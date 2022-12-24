@@ -30,7 +30,7 @@ public class ConflictFreenes extends Semantics{
             latexFormulaBody += "(v_"+arguments.get(argument.getKey())+" \\rightarrow (";
             for(int i = 0; i < attacks.size(); i++){
                 IVecInt attack = attacks.get(i);
-                if(attack.get(1) == argument.getKey()){ // El argumento es atacado
+                if(attack.get(1) == argument.getKey()){ // The argument is attacked.
                     argumentIsAttacked = true;
                     clause = new VecInt();
                     clause.push(argument.getKey() * -1);
@@ -41,14 +41,14 @@ public class ConflictFreenes extends Semantics{
                 }
             }
 
-            if(!argumentIsAttacked){ // Si el argumento no es atacado por nadie, entonces puede recibir cualquier valor de verdad.
+            if(!argumentIsAttacked){ // If the argument isn't attacked by anyone, then it can be assigned any truth value.
                 clause = new VecInt();
                 clause.push(argument.getKey());
                 clause.push(argument.getKey() * -1);
                 clauses.push(clause);
                 latexFormulaBody += "\\top ";
             } else{
-                latexFormulaBody = Utils.removeLastOperatorFromLatexFormula(latexFormulaBody, 6); // Eliminamos el ultimo and agregado cuando reconociamos ataques.
+                latexFormulaBody = Utils.removeLastOperatorFromLatexFormula(latexFormulaBody, 6); // We delete the last added "and" when we were recognizing attacks.
             }
 
             latexFormulaBody += ") ) \\land \\\\ ";

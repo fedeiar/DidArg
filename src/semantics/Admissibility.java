@@ -29,7 +29,7 @@ public class Admissibility extends Semantics{
     public IVec<IVecInt> calculateReduction(){
         clauses = conflictFreenes.calculateReduction();
         latexFormulaBody = conflictFreenes.getLatexFormulaBody();
-        latexFormulaBody += "\\land \\\\"; // Agregamos el and y salto de linea que sacamos en ConflictFreenes
+        latexFormulaBody += "\\land \\\\"; // Add the "and" and newline that was erased in ConflictFreenes
         VecInt clause;
         boolean argumentIsAttacked;
         boolean argumentIsDefendedFromAttack;
@@ -37,40 +37,40 @@ public class Admissibility extends Semantics{
         for(Entry<Integer, String> argument : arguments.entrySet()){
             latexFormulaBody += "(v_"+argument.getValue()+" \\rightarrow ( ";
             argumentIsAttacked = false;
-            for(int i = 0; i < attacks.size(); i++){ // buscamos los atacantes del argumento
+            for(int i = 0; i < attacks.size(); i++){ // Look for attackers of the argument.
                 IVecInt attack1 = attacks.get(i);
-                if(attack1.get(1) == argument.getKey()){ // significa que el argumento es atacado
+                if(attack1.get(1) == argument.getKey()){ // This means that the argument is attacked.
                     latexFormulaBody += "( ";
                     clause = new VecInt();
-                    clause.push(argument.getKey() * -1); // agregamos al argumento negado por la regla de equivalencia con la implicacion
+                    clause.push(argument.getKey() * -1); // We add to the argument negated by the equivalence rule with the implication.
                     argumentIsAttacked = true;
                     int attackerOfArgument = attack1.get(0);
                     argumentIsDefendedFromAttack = false;
-                    for(int j = 0; j < attacks.size(); j++){ // buscamos los defensores del argumento
+                    for(int j = 0; j < attacks.size(); j++){ // Look for defenders of the argument.
                         IVecInt attack2 = attacks.get(j);
-                        if(attack2.get(1) == attackerOfArgument){ // significa que el argumento es defendido de ese ataque por attack2.get(0)
+                        if(attack2.get(1) == attackerOfArgument){ // It means that the argument is defended from that attack by attack2.get(0).
                             argumentIsDefendedFromAttack = true;
-                            clause.push(attack2.get(0)); // agregamos al defensor del argumento
+                            clause.push(attack2.get(0)); // Add the defender of the argument
                             latexFormulaBody += "v_"+arguments.get(attack2.get(0))+" \\lor ";
                         }
                     }
                     if(!argumentIsDefendedFromAttack){
                         latexFormulaBody += "\\bot ";
                     } else{
-                        latexFormulaBody = Utils.removeLastOperatorFromLatexFormula(latexFormulaBody, 5); // Eliminamos el ultimo or agregado cuando reconociamos defensores.
+                        latexFormulaBody = Utils.removeLastOperatorFromLatexFormula(latexFormulaBody, 5); // Delete the last added "or" when we were recognizing defenders. 
                     }
                     latexFormulaBody += ") \\land ";
-                    clauses.push(clause); // tenemos una clausula para un atacante.
+                    clauses.push(clause); // We have a clause for an attacker.
                 }
             }
-            if(!argumentIsAttacked){ // si el argumento no es atacado por nadie, entonces puede recibir cualquier valor de verdad.
+            if(!argumentIsAttacked){ // If the argument isn't attacked by anyone, then it can be assigned any truth value.
                 clause = new VecInt();
                 clause.push(argument.getKey() * -1);
                 clause.push(argument.getKey());
                 clauses.push(clause);
                 latexFormulaBody += "\\top ";
             } else{
-                latexFormulaBody = Utils.removeLastOperatorFromLatexFormula(latexFormulaBody, 6); // Eliminamos el ultimo and agregado cuando reconociamos ataques.
+                latexFormulaBody = Utils.removeLastOperatorFromLatexFormula(latexFormulaBody, 6); // Delete the last "and" added when we were recognizing attacks.
             }
             latexFormulaBody += ") ) \\land \\\\ ";
         }
