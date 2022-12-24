@@ -7,8 +7,8 @@ import org.sat4j.specs.ContradictionException;
 import org.sat4j.specs.IVec;
 import org.sat4j.specs.IVecInt;
 
-import controller.ControllerMainWindow;
 import parser.AFDataStructures;
+import presenter.PresenterMainWindow;
 import semantics.Admissibility;
 import semantics.Complete;
 import semantics.ConflictFreenes;
@@ -41,12 +41,12 @@ public class App {
                 e.printStackTrace();
             } 
 
-            ControllerMainWindow controllerMainWindow = new ControllerMainWindow();
-            ViewMainWindow mainWindowView = new ViewMainWindow(controllerMainWindow);
-            controllerMainWindow.setMainWindowView(mainWindowView);
+            PresenterMainWindow presenterMainWindow = new PresenterMainWindow();
+            ViewMainWindow mainWindowView = new ViewMainWindow(presenterMainWindow);
+            presenterMainWindow.setMainWindowView(mainWindowView);
 
-            ViewAboutArgumentation viewAboutArgumentation = new ViewAboutArgumentation(controllerMainWindow);
-            controllerMainWindow.setViewAboutArgumentation(viewAboutArgumentation);
+            ViewAboutArgumentation viewAboutArgumentation = new ViewAboutArgumentation(presenterMainWindow);
+            presenterMainWindow.setViewAboutArgumentation(viewAboutArgumentation);
 
             mainWindowView.setVisible(true);
 

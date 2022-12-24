@@ -2,7 +2,7 @@ package view;
 import java.awt.*;
 import javax.swing.*;
 
-import controller.ControllerMainWindow;
+import presenter.PresenterMainWindow;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 public class ViewAboutArgumentation extends javax.swing.JFrame{
     
-    private ControllerMainWindow controllerMainWindow;
+    private PresenterMainWindow presenterMainWindow;
 
     private JPanel mainPanel, panelBottom;
     private JEditorPane taAboutArgumentation;
@@ -31,8 +31,8 @@ public class ViewAboutArgumentation extends javax.swing.JFrame{
     "<li> <b>Preferred extension</b> if S is a maximal admissible extension with respect to set inclusion.</li>"+
     "</ul>";
 
-    public ViewAboutArgumentation(ControllerMainWindow controllerMainWindow){
-        this.controllerMainWindow = controllerMainWindow;
+    public ViewAboutArgumentation(PresenterMainWindow presenterMainWindow){
+        this.presenterMainWindow = presenterMainWindow;
 
         initGUIComponents();
         initListeners();
@@ -75,7 +75,7 @@ public class ViewAboutArgumentation extends javax.swing.JFrame{
     private void initListeners(){
         btnClose.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent actionEvent){
-                controllerMainWindow.closeAboutArgumentationWindow();
+                presenterMainWindow.closeAboutArgumentationWindow();
             }
         });
     }

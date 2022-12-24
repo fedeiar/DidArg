@@ -1,0 +1,10 @@
+# Error: missing '.' in line 5 for the argument definition.
+
+arg(a).
+arg(b).
+arg(c)
+arg(d).
+att(a,b).
+att(b,c,d).
+att(c,d).
+att(d,c).

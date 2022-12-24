@@ -1,14 +1,15 @@
 package view;
 import java.awt.*;
 import javax.swing.*;
+
+import presenter.PresenterMainWindow;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import controller.ControllerMainWindow;
-
 public class ViewMainWindow extends javax.swing.JFrame{
 
-    private ControllerMainWindow controllerMainWindow;
+    private PresenterMainWindow presenterMainWindow;
 
     private JLabel lblLatexFormula, lblTitleBooleanFormula, lblTitleArgumentationFramework, lblTitleExtensions, lblTitleExplanation;
     private JPanel mainPanel, panelLeft, panelCenter, panelRight, panelBottom;
@@ -22,9 +23,9 @@ public class ViewMainWindow extends javax.swing.JFrame{
     private final int LATEX_FORMULA_SIZE = 20;
 
 
-    public ViewMainWindow(ControllerMainWindow controllerMainWindow){
+    public ViewMainWindow(PresenterMainWindow presenterMainWindow){
         latex = new Latex();
-        this.controllerMainWindow = controllerMainWindow;
+        this.presenterMainWindow = presenterMainWindow;
         initGUIComponents();
         initListeners();
     }
@@ -132,19 +133,19 @@ public class ViewMainWindow extends javax.swing.JFrame{
     private void initListeners(){
         btnFile.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent actionEvent){
-                controllerMainWindow.loadArgumentationFramework();
+                presenterMainWindow.loadArgumentationFramework();
             }
         });
 
         btnCalculateExtensions.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent actionEvent){
-                controllerMainWindow.calculateExtensions(cbSelectSemantics.getSelectedItem().toString());
+                presenterMainWindow.calculateExtensions(cbSelectSemantics.getSelectedItem().toString());
             }
         });
 
         btnAboutArgumentation.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent actionevent){
-                controllerMainWindow.openAboutArgumentationWindow();
+                presenterMainWindow.openAboutArgumentationWindow();
             }
         });
 

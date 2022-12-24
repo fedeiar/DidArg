@@ -1,4 +1,4 @@
-package controller;
+package presenter;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import semantics.Semantics;
 import view.ViewAboutArgumentation;
 import view.ViewMainWindow;
 
-public class ControllerMainWindow {
+public class PresenterMainWindow {
     
     private ViewMainWindow viewMainWindow;
     private ViewAboutArgumentation viewAboutArgumentation;
@@ -26,7 +26,7 @@ public class ControllerMainWindow {
     private boolean isFileLoaded;
 
 
-    public ControllerMainWindow(){
+    public PresenterMainWindow(){
         structures = new AFDataStructures();
         fileChooser = new JFileChooser();
         isFileLoaded = false;
