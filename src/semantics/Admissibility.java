@@ -29,6 +29,11 @@ public class Admissibility extends Semantics{
     public IVec<IVecInt> calculateReduction(){
         clauses = conflictFreenes.calculateReduction();
         latexFormulaBody = conflictFreenes.getLatexFormulaBody();
+
+        if(arguments.size() == 0){
+            return clauses;
+        }
+
         latexFormulaBody += "\\land \\\\"; // Add the "and" and newline that was erased in ConflictFreenes
         VecInt clause;
         boolean argumentIsAttacked;

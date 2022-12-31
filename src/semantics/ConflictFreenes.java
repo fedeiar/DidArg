@@ -24,6 +24,10 @@ public class ConflictFreenes extends Semantics{
     public IVec<IVecInt> calculateReduction(){
         VecInt clause;
         boolean argumentIsAttacked;
+
+        if(arguments.size() == 0){
+            return clauses;
+        }
         
         for(Entry<Integer, String> argument : arguments.entrySet()){
             argumentIsAttacked = false;

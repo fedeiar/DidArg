@@ -1,0 +1,6 @@
+arg(a).
+
+# Conflict free sets: {{}, {a}}
+# Admisible sets: {{}, {a}}
+# Complete sets: {{a}}
+# Stable sets: {{a}}

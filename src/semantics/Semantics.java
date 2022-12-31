@@ -37,10 +37,12 @@ public abstract class Semantics{
 
     private void buildLatexArguments(){
         latexArguments = "Ar = \\{";
+        boolean atLeastOneArgument = false;
         for(Entry<Integer, String> argument : arguments.entrySet()){
+            atLeastOneArgument = true;
             latexArguments += argument.getValue()+", ";
         }
-        latexArguments = Utils.removeLastOperatorFromLatexFormula(latexArguments, 2);
+        latexArguments = (atLeastOneArgument) ? Utils.removeLastOperatorFromLatexFormula(latexArguments, 2) : latexArguments;
         latexArguments += "\\}";
     }
 
