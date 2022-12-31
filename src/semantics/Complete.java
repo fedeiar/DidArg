@@ -20,10 +20,10 @@ public class Complete extends Semantics {
         super(structures);
         conflictFreenes = new ConflictFreenes(structures);
 
-        latexGenericFormula = "comp_{Ar, att} := \\underset{a \\in Ar}{\\bigwedge} ( ( v_a \\rightarrow \\underset{(b, a) \\in att}{\\bigwedge} \\neg v_b) \\land (v_a \\leftrightarrow \\underset{(b, a) \\in att}{\\bigwedge} (\\underset{(c, b) \\in att}{\\bigvee} v_c)))"; // TODO
+        latexGenericFormula = "comp_{Ar, att} := \\underset{a \\in Ar}{\\bigwedge} \\left( ( v_a \\rightarrow \\underset{(b, a) \\in att}{\\bigwedge} \\neg v_b) \\land (v_a \\leftrightarrow \\underset{(b, a) \\in att}{\\bigwedge} (\\underset{(c, b) \\in att}{\\bigvee} v_c))  \\right)";
         latexFormulaHeader = "comp_{Ar, att} := ";
         
-        explanation = "In adittion to having to be admissible, a complete extension must also include every argument it defends. The formula is very similar to the admissible one, but while the admissibility formula allows us to accept an argument if it is defended by the extension (implication relation in the formula), the complete formula forces us to accept an argument if it is defended by the extension (if and only if relation in the formula).";
+        explanation = "In adittion to having to be admissible, a complete extension must also include every argument it defends. The formula is very similar to the admissible one, but while the admissibility formula allows us to accept an argument if it is defended by the extension (\"implication\" relation in the formula), the complete formula forces us to accept an argument if it is defended by the extension (\"if and only if\" relation in the formula).";
     }
 
     //TODO: esta bien? la reduccion que calcula es a la fbf admisible, pero tuve que copiar y pegar para cambiar el rightarrow.
@@ -73,10 +73,10 @@ public class Complete extends Semantics {
             } else{
                 latexFormulaBody = Utils.removeLastOperatorFromLatexFormula(latexFormulaBody, 6); // Delete the last "and" added when we were recognizing attacks.
             }
-            latexFormulaBody += ") ) \\land \\\\ ";
+            latexFormulaBody += ") ) \\ \\land \\\\ ";
         }
 
-        latexFormulaBody = Utils.removeLastOperatorFromLatexFormula(latexFormulaBody, 9);
+        latexFormulaBody = Utils.removeLastOperatorFromLatexFormula(latexFormulaBody, 9); // Remove the last "and" when we were adding clauses.
 
         return clauses;
     }

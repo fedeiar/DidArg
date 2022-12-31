@@ -10,7 +10,8 @@ att(d,c).
 att(d,c). # repeated attack (must be ignored).
 att(a,b). # repeated attack (must be ignored).
 
-# Conflict free sets: [[], [a], [b], [c], [d], [a, c], [a, d], [b, d]]
-# Admisible sets: [[], [a], [d], [a, c], [a, d]]
-# Complete sets: [[a], [a, d], [a, c]]
-# Preferred sets: [[a, c], [a, d]]
+# Conflict free sets: {{}, {a}, {b}, {c}, {d}, {a, c}, {a, d}, {b, d}}
+# Admisible sets: {{}, {a}, {d}, {a, c}, {a, d}}
+# Complete sets: {{a}, {a, d}, {a, c}}
+# Preferred sets: {{a, c}, {a, d}}
+# Stable sets: {{a,d}, {a,c}}

@@ -22,13 +22,14 @@ public class ViewAboutArgumentation extends javax.swing.JFrame{
     "<p>The <b>semantics</b> (procedure for finding winning arguments) of an AF can be expressed by selecting a subset of the arguments, called an extension, that would be the accepted arguments. Those arguments that were not selected are unaccepted or undecided.</p>"+
     "<p>All semantics are based on the concept of conflict-freenes.</p>"+
     "<hr><h2>Conflict-free sets</h2>"+
-    "<p> A subset S from the arguments of an AF is conflict-free if there doesn't exists two arguments <em>a</em> and <em>b</em> in S such that <em>a</em> attacks <em>b</em> or <em>a</em> attacks <em>a</em> </p>"+
+    "<p> A subset S from the arguments of an AF is conflict-free if there doesn't exists two arguments <em>a</em> and <em>b</em> in S such that <em>a</em> attacks <em>b</em> or <em>b</em> attacks <em>a</em> </p>"+
     "<hr><h2>Semantics</h2>"+
     "<p>Given an AF = (Ar, att), then a conflict-free set S from AF is a(an):</p>"+
     "<ul>"+
     "<li> <b>Admissible extension</b> if each argument belonging to S is defended by S.</li>"+
-    "<li> <b>Complete extension</b> if S is an admissible extension and for every argument <em>a</em> from Ar defended by S, it holds that <em>a</em> belongs to S.</li>"+
+    "<li> <b>Complete extension</b> if S is an admissible extension and for every argument <em>a</em> in Ar defended by S, it holds that <em>a</em> belongs to S.</li>"+
     "<li> <b>Preferred extension</b> if S is a maximal admissible extension with respect to set inclusion.</li>"+
+    "<li> <b>Stable extension</b> if each argument that doesn't belong to S is attacked by S.</li>"+
     "</ul>";
 
     public ViewAboutArgumentation(PresenterMainWindow presenterMainWindow){

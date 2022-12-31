@@ -6,6 +6,7 @@ att(a,b).
 att(b,c).
 att(c,d).
 
-# Conflict free sets: [[], [a], [b], [c], [d], [a, c], [a, d], [b, d]]
-# Admisible sets: [[], [a], [a, c]]
-# Complete sets: [[a, c]]
+# Conflict free sets: {{}, {a}, {b}, {c}, {d}, {a, c}, {a, d}, {b, d}}
+# Admisible sets: {{}, {a}, {a, c}}
+# Complete sets: {{a, c}}
+# Stable sets: {{a, c}}

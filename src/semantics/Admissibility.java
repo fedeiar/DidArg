@@ -19,10 +19,10 @@ public class Admissibility extends Semantics{
         super(structures);
         conflictFreenes = new ConflictFreenes(structures);
 
-        latexGenericFormula = "adm_{Ar, att} := \\underset{a \\in Ar}{\\bigwedge} ( ( v_a \\rightarrow \\underset{(b, a) \\in att}{\\bigwedge} \\neg v_b) \\land (v_a \\rightarrow \\underset{(b, a) \\in att}{\\bigwedge} (\\underset{(c, b) \\in att}{\\bigvee} v_c)))";
+        latexGenericFormula = "adm_{Ar, att} := \\underset{a \\in Ar}{\\bigwedge} \\left( ( v_a \\rightarrow \\underset{(b, a) \\in att}{\\bigwedge} \\neg v_b) \\land (v_a \\rightarrow \\underset{(b, a) \\in att}{\\bigwedge} (\\underset{(c, b) \\in att}{\\bigvee} v_c))  \\right)";
         latexFormulaHeader = "adm_{Ar, att} := ";
 
-        explanation = "In adittion to having to be conflict-free, an admissible set must also defend every argument it has from every attack that any of its arguments recieves. Part of the formula is the same as the one for conflict-freenes, the other part encodes that if an argument 'a' is accepted, then for all of its attackers 'b', at least one argument 'c' that attacks 'b' must be accepted.";
+        explanation = "In adittion to having to be conflict-free, an admissible set must also defend every argument it has from every attack that any of its arguments recieves. The first part of the formula is the same as the one for conflict-freenes, the other part encodes that if an argument 'a' is accepted, then for all of its attackers 'b', at least one argument 'c' that attacks 'b' must be accepted.";
     }
 
     //TODO: esta bien?
@@ -72,10 +72,10 @@ public class Admissibility extends Semantics{
             } else{
                 latexFormulaBody = Utils.removeLastOperatorFromLatexFormula(latexFormulaBody, 6); // Delete the last "and" added when we were recognizing attacks.
             }
-            latexFormulaBody += ") ) \\land \\\\ ";
+            latexFormulaBody += ") ) \\ \\land \\\\ ";
         }
 
-        latexFormulaBody = Utils.removeLastOperatorFromLatexFormula(latexFormulaBody, 9);
+        latexFormulaBody = Utils.removeLastOperatorFromLatexFormula(latexFormulaBody, 9); // Remove the last "and" when we were adding clauses.
 
         return clauses;
     }

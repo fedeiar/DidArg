@@ -14,7 +14,7 @@ public class ConflictFreenes extends Semantics{
 
     public ConflictFreenes(AFDataStructures structures){
         super(structures);
-        latexGenericFormula = "cf_{Ar, att} := \\underset{a \\in Ar}{\\bigwedge} ( ( v_a \\rightarrow \\underset{(b, a) \\in att}{\\bigwedge} \\neg v_b) ";
+        latexGenericFormula = "cf_{Ar, att} := \\underset{a \\in Ar}{\\bigwedge} \\left( ( v_a \\rightarrow \\underset{(b, a) \\in att}{\\bigwedge} \\neg v_b \\right) ";
         latexFormulaHeader = "cf_{Ar, att} := ";
 
         explanation = "Despite conflict-freenes is not a semantics, but it's a basic requirement that all semantics in this application must satisfy. The formula is basically saying that if an argument 'a' is accepted, none other argument 'b' that attacks 'a' or is attacked by 'a' can be accepted.";
@@ -51,10 +51,10 @@ public class ConflictFreenes extends Semantics{
                 latexFormulaBody = Utils.removeLastOperatorFromLatexFormula(latexFormulaBody, 6); // We delete the last added "and" when we were recognizing attacks.
             }
 
-            latexFormulaBody += ") ) \\land \\\\ ";
+            latexFormulaBody += ") ) \\ \\land \\\\ ";
         }
 
-        latexFormulaBody = Utils.removeLastOperatorFromLatexFormula(latexFormulaBody, 9);
+        latexFormulaBody = Utils.removeLastOperatorFromLatexFormula(latexFormulaBody, 9); // Remove the last "and" when we were adding clauses.
         
         return clauses;
     }

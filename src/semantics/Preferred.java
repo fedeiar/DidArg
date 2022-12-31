@@ -17,10 +17,10 @@ public class Preferred extends Semantics{
         super(structures);
         admissibility = new Admissibility(structures);
 
-        latexGenericFormula = "\\\\ prf_{Ar, att} := adm_{Ar, att} \\land (\\nexists Ar' \\ | \\ Ar \\subset Ar' \\land adm_{Ar', att}), \\ where \\ Ar' \\subseteq Args.";
+        latexGenericFormula = "\\\\ prf_{Ar, att} := adm_{Ar, att} \\land \\left( \\nexists Ar' \\ | \\ (Ar < Ar') \\land adm_{Ar', att} \\right), \\ where \\\\ Ar < Ar' := \\underset{a \\in Ar}{\\bigwedge} (v_a \\rightarrow v_{a'}) \\wedge \\neg \\underset{a' \\in Ar'}{\\bigwedge} (v_{a'} \\rightarrow v_a), \\ with \\ Ar' = \\{a' \\ | \\ a \\in Ar \\}.";
         latexFormulaHeader = admissibility.getLatexFormulaHeader();
         
-        explanation = "In order to get preferred extensions, instead of directly use the formula for preferred extensions and look for all of the subsets of Ar' in order to find the models of prf, we will get all the admissible sets, and keep only the maximal ones of them. This works because one of the possible definitions for a preferred extension is that is a maximal admissible set with respect to set inclusion.";
+        explanation = "In order to get preferred extensions, instead of directly use the formula for preferred extensions to find the models of prf, we will get all the admissible sets, and keep only the maximal ones of them. This works because one of the possible definitions for a preferred extension is that is a maximal admissible set with respect to set inclusion.";
     }
 
     public IVec<IVecInt> calculateReduction(){

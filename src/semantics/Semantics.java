@@ -45,13 +45,15 @@ public abstract class Semantics{
     }
 
     private void buildLatexAttacks(){
-        latexAttacks = "att = \\{";
+        latexAttacks = "att = \\{ ";
+        boolean atLeastOneAttack = false;
         for(int i = 0; i < attacks.size(); i++){
+            atLeastOneAttack = true;
             IVecInt attack = attacks.get(i);
             latexAttacks += "("+ arguments.get(attack.get(0)) +", "+ arguments.get(attack.get(1)) +"), ";
         }
-        latexAttacks = Utils.removeLastOperatorFromLatexFormula(latexAttacks, 2);
-        latexAttacks += "\\}";
+        latexAttacks = (atLeastOneAttack) ? Utils.removeLastOperatorFromLatexFormula(latexAttacks, 2) : latexAttacks;
+        latexAttacks += "\\} ";
     }
 
     public abstract IVec<IVecInt> calculateReduction();

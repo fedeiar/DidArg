@@ -13,6 +13,7 @@ import semantics.Complete;
 import semantics.ConflictFreenes;
 import semantics.Preferred;
 import semantics.Semantics;
+import semantics.Stable;
 import view.ViewAboutArgumentation;
 import view.ViewMainWindow;
 
@@ -72,7 +73,9 @@ public class PresenterMainWindow {
             semantics = new Complete(structures);
         } else if(semanticsString.equals("Preferred")){
             semantics = new Preferred(structures);
-        }
+        } else if(semanticsString.equals("Stable")){
+            semantics = new Stable(structures);
+        } 
 
         try{
             Set<Set<String>> extensions = semantics.getExtensions();
@@ -87,7 +90,6 @@ public class PresenterMainWindow {
             // TODO: analizar que tipo de error puede surgir y tirar una alerta adecuada
             e.printStackTrace();
         }
-        
     }
 
     public void openAboutArgumentationWindow(){

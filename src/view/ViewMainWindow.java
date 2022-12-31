@@ -156,6 +156,7 @@ public class ViewMainWindow extends javax.swing.JFrame{
         cbSelectSemantics.addItem("Admissibility");
         cbSelectSemantics.addItem("Complete");
         cbSelectSemantics.addItem("Preferred");
+        cbSelectSemantics.addItem("Stable");
     }
 
     public void setLatexLabel(String latexString){
