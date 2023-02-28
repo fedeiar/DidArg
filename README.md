@@ -1,1 +1,1 @@
-Para ejecutar la aplicación, basta instalar una versión de Java posterior a la 16.0.1 la cuál puede conseguirse en la página oficial de Java. Una vez instalada, simplemente basta con hacer doble click sobre el archivo DidArg.jar para ejecutar la aplicación.
+Para ejecutar la aplicación, basta instalar una versión de Java posterior a la 16.0.1 la cual puede descargarse desde la página oficial de Java. Una vez instalada, simplemente basta con ejecutar el archivo DidArg.jar para iniciar la aplicación.
