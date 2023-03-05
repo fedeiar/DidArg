@@ -12,7 +12,6 @@ import org.sat4j.specs.IVecInt;
 
 public class Parser {
 
-    
     private FileManager fileManager;
     private String contentOfFile;
     private boolean writeContentOfFile;
@@ -37,7 +36,6 @@ public class Parser {
         attack_relations = new Vec<IVecInt>();
     }
 
-    //TODO: esta bien obtener el contenido del archivo de texto mientras parseamos?
     private void updateCharacter() throws IOException{
         currentCharacter = fileManager.proximoCaracter();
         if(writeContentOfFile && !fileManager.esEOF(currentCharacter)){

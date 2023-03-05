@@ -87,7 +87,6 @@ public class PresenterMainWindow {
             viewMainWindow.setLatexLabel(latexFormula);
             viewMainWindow.setTAExplanationText(explanation);
         } catch(Exception e){
-            // TODO: analizar que tipo de error puede surgir y tirar una alerta adecuada
             e.printStackTrace();
         }
     }
