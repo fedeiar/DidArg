@@ -22,7 +22,7 @@ public class Stable extends Semantics{
         latexGenericFormula = "st_{Ar, att} := \\underset{a \\in Ar}{\\bigwedge} \\left( (v_a \\rightarrow \\underset{(b, a) \\in att}{\\bigwedge} \\neg v_b) \\wedge (\\neg v_a \\rightarrow \\underset{(b, a) \\in att}{\\bigvee} v_b) \\right)";
         latexFormulaHeader = "st_{Ar, att} := ";
 
-        explanation = "In adittion to having to be conflict-free, a stable extension must also attack every argument that doesn't belong to the extension, that is, every argument that doesn't belong to the extension must be attacked at least by one argument from the extension. The first part of the formula is the same as the one for conflict-freenes. The other part encodes that if an argument 'a' is not accepted, then at least one attacker of 'a' must be accepted.";
+        explanation = "In adittion to having to be conflict-free, every argument that doesn't belong to the extension must be attacked at least by one argument from the extension. The first part of the formula is the same as the one for conflict-freenes. The other part encodes that if an argument 'a' is not accepted, then at least one attacker of 'a' must be accepted.";
     }
 
     //TODO: esta bien?

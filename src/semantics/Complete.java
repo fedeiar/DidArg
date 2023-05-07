@@ -23,7 +23,7 @@ public class Complete extends Semantics {
         latexGenericFormula = "comp_{Ar, att} := \\underset{a \\in Ar}{\\bigwedge} \\left( ( v_a \\rightarrow \\underset{(b, a) \\in att}{\\bigwedge} \\neg v_b) \\land (v_a \\leftrightarrow \\underset{(b, a) \\in att}{\\bigwedge} (\\underset{(c, b) \\in att}{\\bigvee} v_c))  \\right)";
         latexFormulaHeader = "comp_{Ar, att} := ";
         
-        explanation = "In adittion to having to be admissible, a complete extension must also include every argument it defends. The formula is very similar to the admissible one, but while the admissibility formula allows us to accept an argument if it is defended by the extension (\"implication\" relation in the formula), the complete formula forces us to accept an argument if it is defended by the extension (\"if and only if\" relation in the formula).";
+        explanation = "In adittion to having to be admissible, a complete extension must also include every argument it defends. The formula is very similar to the admissibility one, but while the 'admissibility formula' allows us to accept an argument if it is defended by the extension (\"implication\" relation in the formula), the 'complete formula' forces us to accept an argument if it is defended by the extension (\"if and only if\" relation in the formula).";
     }
 
     //TODO: esta bien? la reduccion que calcula es a la fbf admisible, pero tuve que copiar y pegar para cambiar el rightarrow.
