@@ -4,9 +4,6 @@ import javax.swing.*;
 
 import presenter.PresenterMainWindow;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 
 public abstract class ViewGenericAbout extends javax.swing.JFrame{
     

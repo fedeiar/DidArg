@@ -16,7 +16,6 @@ import semantics.Semantics;
 import semantics.Stable;
 import view.ViewAboutArgumentation;
 import view.ViewAboutAuthor;
-import view.ViewGenericAbout;
 import view.ViewMainWindow;
 
 public class PresenterMainWindow {
