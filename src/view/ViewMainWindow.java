@@ -1,4 +1,5 @@
 package view;
+
 import java.awt.*;
 import javax.swing.*;
 
@@ -7,23 +8,23 @@ import presenter.PresenterMainWindow;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ViewMainWindow extends javax.swing.JFrame{
+public class ViewMainWindow extends javax.swing.JFrame {
 
     private PresenterMainWindow presenterMainWindow;
 
-    private JLabel lblLatexFormula, lblTitleBooleanFormula, lblTitleArgumentationFramework, lblTitleExtensions, lblTitleExplanation;
+    private JLabel lblLatexFormula, lblTitleBooleanFormula, lblTitleArgumentationFramework, lblTitleExtensions,
+            lblTitleExplanation;
     private JPanel mainPanel, panelLeft, panelCenter, panelRight, panelBottom;
     private JScrollPane spLatexFormula, spFile, spExtensions, spExplanation;
     private JTextArea taArgumentationFramework, taExtensions, taExplanation;
-    private JButton btnFile, btnCalculateExtensions, btnAboutArgumentation;
+    private JButton btnFile, btnCalculateExtensions, btnAboutArgumentation, btnAboutAuthor;
     private JComboBox<String> cbSelectSemantics;
 
     private Latex latex;
 
     private final int LATEX_FORMULA_SIZE = 20;
 
-
-    public ViewMainWindow(PresenterMainWindow presenterMainWindow){
+    public ViewMainWindow(PresenterMainWindow presenterMainWindow) {
         latex = new Latex();
         this.presenterMainWindow = presenterMainWindow;
         initGUIComponents();
@@ -34,12 +35,11 @@ public class ViewMainWindow extends javax.swing.JFrame{
         this.setTitle("Didactic Argumentation");
         this.setSize(1400, 646);
         this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(true);
 
-        
         mainPanel = new JPanel();
-		mainPanel.setLayout(new BorderLayout());
+        mainPanel.setLayout(new BorderLayout());
         this.setContentPane(mainPanel);
 
         panelLeft = new JPanel();
@@ -59,51 +59,54 @@ public class ViewMainWindow extends javax.swing.JFrame{
         mainPanel.add(panelBottom, BorderLayout.PAGE_END);
 
         lblTitleArgumentationFramework = new JLabel("Argumentation Framework");
-		lblTitleArgumentationFramework.setFont(new Font("Century", Font.PLAIN, 18));
+        lblTitleArgumentationFramework.setFont(new Font("Century", Font.PLAIN, 18));
         lblTitleArgumentationFramework.setAlignmentX(JLabel.CENTER_ALIGNMENT);
         lblTitleArgumentationFramework.setPreferredSize(new Dimension(240, 35));
-		panelLeft.add(lblTitleArgumentationFramework);
+        panelLeft.add(lblTitleArgumentationFramework);
 
         taArgumentationFramework = new JTextArea();
         taArgumentationFramework.setEditable(false);
         taArgumentationFramework.setFont(new Font("Calibri", Font.PLAIN, 16));
         spFile = new JScrollPane(taArgumentationFramework);
         spFile.setPreferredSize(new Dimension(200, 500));
-		panelLeft.add(spFile);
+        panelLeft.add(spFile);
 
         btnAboutArgumentation = new JButton("About Argumentation");
-		panelBottom.add(btnAboutArgumentation);
+        panelBottom.add(btnAboutArgumentation);
+
+        btnAboutAuthor = new JButton("About");
+        panelBottom.add(btnAboutAuthor);
 
         btnFile = new JButton("Select File");
         btnFile.setToolTipText("Select a file containing an argumentation framework.");
-		panelBottom.add(btnFile);
+        panelBottom.add(btnFile);
 
         cbSelectSemantics = new JComboBox<String>();
         cbSelectSemantics.setToolTipText("Choose the semantics of which you want to enumerate extensions");
         fillComboBox();
-		panelBottom.add(cbSelectSemantics);
+        panelBottom.add(cbSelectSemantics);
 
         btnCalculateExtensions = new JButton("Calculate Extensions");
         btnCalculateExtensions.setEnabled(false);
         btnCalculateExtensions.setToolTipText("Calculate the extensions for the selected semantics");
-		panelBottom.add(btnCalculateExtensions);
+        panelBottom.add(btnCalculateExtensions);
 
         lblTitleBooleanFormula = new JLabel("Boolean Formula");
-		lblTitleBooleanFormula.setFont(new Font("Century", Font.PLAIN, 20));
+        lblTitleBooleanFormula.setFont(new Font("Century", Font.PLAIN, 20));
         lblTitleBooleanFormula.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-        lblTitleBooleanFormula.setPreferredSize(new Dimension(153,35));
-		panelCenter.add(lblTitleBooleanFormula);
+        lblTitleBooleanFormula.setPreferredSize(new Dimension(153, 35));
+        panelCenter.add(lblTitleBooleanFormula);
 
         lblLatexFormula = new JLabel("");
         spLatexFormula = new JScrollPane(lblLatexFormula);
         spLatexFormula.setPreferredSize(new Dimension(400, 400));
-		panelCenter.add(spLatexFormula);
+        panelCenter.add(spLatexFormula);
 
         lblTitleExtensions = new JLabel("Extensions");
-		lblTitleExtensions.setFont(new Font("Century", Font.PLAIN, 20));
+        lblTitleExtensions.setFont(new Font("Century", Font.PLAIN, 20));
         lblTitleExtensions.setAlignmentX(JLabel.CENTER_ALIGNMENT);
         lblTitleExtensions.setPreferredSize(new Dimension(153, 35));
-		panelRight.add(lblTitleExtensions);
+        panelRight.add(lblTitleExtensions);
 
         taExtensions = new JTextArea();
         taExtensions.setEditable(false);
@@ -112,46 +115,53 @@ public class ViewMainWindow extends javax.swing.JFrame{
         taExtensions.setFont(new Font("Calibri", Font.PLAIN, 16));
         spExtensions = new JScrollPane(taExtensions);
         spExtensions.setPreferredSize(new Dimension(200, 95));
-		panelRight.add(spExtensions);
+        panelRight.add(spExtensions);
 
         lblTitleExplanation = new JLabel("Explanation");
-		lblTitleExplanation.setFont(new Font("Century", Font.PLAIN, 20));
+        lblTitleExplanation.setFont(new Font("Century", Font.PLAIN, 20));
         lblTitleExplanation.setAlignmentX(JLabel.CENTER_ALIGNMENT);
         lblTitleExplanation.setPreferredSize(new Dimension(153, 35));
-		panelRight.add(lblTitleExplanation);
+        panelRight.add(lblTitleExplanation);
 
         taExplanation = new JTextArea();
         taExplanation.setEditable(false);
         taExplanation.setLineWrap(true);
         taExplanation.setWrapStyleWord(true);
         taExplanation.setFont(new Font("Calibri", Font.PLAIN, 16));
-        spExplanation = new JScrollPane(taExplanation);;
+        spExplanation = new JScrollPane(taExplanation);
+        ;
         spExplanation.setPreferredSize(new Dimension(250, 200));
-		panelRight.add(spExplanation);
+        panelRight.add(spExplanation);
     }
 
-    private void initListeners(){
-        btnFile.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent actionEvent){
+    private void initListeners() {
+        btnFile.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
                 presenterMainWindow.loadArgumentationFramework();
             }
         });
 
-        btnCalculateExtensions.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent actionEvent){
+        btnCalculateExtensions.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
                 presenterMainWindow.calculateExtensions(cbSelectSemantics.getSelectedItem().toString());
             }
         });
 
-        btnAboutArgumentation.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent actionevent){
+        btnAboutArgumentation.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionevent) {
                 presenterMainWindow.openAboutArgumentationWindow();
+            }
+        });
+
+        btnAboutAuthor.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionevent) {
+                presenterMainWindow.openAboutAuthorWindow();
             }
         });
 
     }
 
-    private void fillComboBox(){
+    private void fillComboBox() {
         cbSelectSemantics.addItem("Conflict Freenes");
         cbSelectSemantics.addItem("Admissibility");
         cbSelectSemantics.addItem("Complete");
@@ -159,43 +169,46 @@ public class ViewMainWindow extends javax.swing.JFrame{
         cbSelectSemantics.addItem("Stable");
     }
 
-    public void setLatexLabel(String latexString){
+    public void setLatexLabel(String latexString) {
         lblLatexFormula.setIcon(latex.actualizarIconLaTex(latexString, LATEX_FORMULA_SIZE));
     }
 
-    public void setTAFileText(String AFText){
+    public void setTAFileText(String AFText) {
         taArgumentationFramework.setText(AFText);
     }
 
-    public void setTAExtensionsText(String extensions){
+    public void setTAExtensionsText(String extensions) {
         taExtensions.setText(extensions);
     }
 
-    public void setTAExplanationText(String explanation){
+    public void setTAExplanationText(String explanation) {
         taExplanation.setText(explanation);
     }
 
-    public void enableExtensionsButton(){
+    public void enableExtensionsButton() {
         btnCalculateExtensions.setEnabled(true);
     }
 
-    public void disableAllButtons(){
+    public void disableAllButtons() {
         btnAboutArgumentation.setEnabled(false);
+        btnAboutAuthor.setEnabled(false);
         btnFile.setEnabled(false);
         cbSelectSemantics.setEnabled(false);
         btnCalculateExtensions.setEnabled(false);
     }
 
-    public void recoverButtons(boolean isFileLoaded){
+    public void recoverButtons(boolean isFileLoaded) {
         btnAboutArgumentation.setEnabled(true);
+        btnAboutAuthor.setEnabled(true);
         btnFile.setEnabled(true);
         cbSelectSemantics.setEnabled(true);
-        if(isFileLoaded){
+        if (isFileLoaded) {
             btnCalculateExtensions.setEnabled(true);
         }
     }
 
-    public void showErrorDialog(String message){
-        JOptionPane.showMessageDialog(this, message+" Correct the error and upload the file again", "Syntax error in file", JOptionPane.ERROR_MESSAGE);
+    public void showErrorDialog(String message) {
+        JOptionPane.showMessageDialog(this, message + " Correct the error and upload the file again",
+                "Syntax error in file", JOptionPane.ERROR_MESSAGE);
     }
 }
